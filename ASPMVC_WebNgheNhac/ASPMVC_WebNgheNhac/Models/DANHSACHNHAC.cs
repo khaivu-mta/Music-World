@@ -1,7 +1,8 @@
-namespace ASPMVC_WebNgheNhac.Models
+﻿namespace ASPMVC_WebNgheNhac.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -17,14 +18,18 @@ namespace ASPMVC_WebNgheNhac.Models
         }
 
         [Key]
+        [DisplayName("Mã danh sách")]
         public int MaDanhSach { get; set; }
 
         [StringLength(100)]
+        [DisplayName("Tên danh sách")]
         public string TenDanhSach { get; set; }
 
+        [DisplayName("Ngày tạo")]
         public DateTime? NgayTao { get; set; }
 
         [StringLength(100)]
+        [DisplayName("Đường dẫn ảnh")]
         public string DuongDanAnh { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,6 +4,10 @@
     ViewBag.Title = "Edit_BANNHAC";
     Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
 }
+<div>
+    @Html.ActionLink("Back to List", "Library", new { id = "BANNHAC" })
+</div>
+
 @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -92,6 +96,3 @@
         </div>
     </div>
 }
-<div>
-    @Html.ActionLink("Back to List", "Library", new { id = "BANNHAC" })
-</div>

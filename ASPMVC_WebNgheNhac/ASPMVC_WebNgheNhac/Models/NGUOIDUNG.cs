@@ -1,7 +1,8 @@
-namespace ASPMVC_WebNgheNhac.Models
+﻿namespace ASPMVC_WebNgheNhac.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -21,14 +22,18 @@ namespace ASPMVC_WebNgheNhac.Models
 
         [Required]
         [StringLength(100)]
+        [DisplayName("Mật khẩu")]
         public string MatKhau { get; set; }
 
         [StringLength(100)]
+        [DisplayName("Họ tên")]
         public string HoTen { get; set; }
 
         [StringLength(200)]
+        [DisplayName("Đường dẫn ảnh")]
         public string DuongDanAnh { get; set; }
 
+        [DisplayName("Mã quyển truy cập")]
         public int? MaQuyenTruyCap { get; set; }
 
         public virtual QUYENTRUYCAP QUYENTRUYCAP { get; set; }

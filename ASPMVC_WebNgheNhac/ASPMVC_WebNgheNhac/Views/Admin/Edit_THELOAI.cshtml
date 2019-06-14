@@ -5,6 +5,10 @@
     Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
 }
 
+<div>
+    @Html.ActionLink("Back to List", "Library", new { id = "THELOAI" })
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -30,7 +34,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Library", new { id = "THELOAI" })
-</div>

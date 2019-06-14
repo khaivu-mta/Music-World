@@ -11,10 +11,14 @@ namespace ASPMVC_WebNgheNhac.Controllers
     public class UserController : Controller
     {
         // GET: User
+        #region MY PARAMETER
+        private DbMusicWebsite db = new DbMusicWebsite();
+        #endregion
+
+        #region MY FUNCTION
         /// <summary>
         /// Các giá trị ban đầu cho các biến toàn cục
         /// </summary>
-        private DbMusicWebsite db = new DbMusicWebsite();
         public int? CheckLogin(string _email, string _password)
         {
             if (string.IsNullOrWhiteSpace(_email) || string.IsNullOrWhiteSpace(_password))
@@ -36,6 +40,8 @@ namespace ASPMVC_WebNgheNhac.Controllers
             Session["TypeUser"] = -1;
             Session["TableEditing"] = null;
         }
+        #endregion
+
 
         [HttpGet]
         public ActionResult Index()

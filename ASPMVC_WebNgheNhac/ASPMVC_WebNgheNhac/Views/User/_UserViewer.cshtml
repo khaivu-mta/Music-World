@@ -46,35 +46,8 @@
             </div>
         </header>
 
-        <!-- Menu -->
-
-        <div class="menu">
-            <div>
-                <div class="menu_overlay"></div>
-                <div class="menu_container d-flex flex-column align-items-start justify-content-center">
-                    <div class="menu_log_reg">
-                        <ul class="d-flex flex-row align-items-start justify-content-start">
-                            <li><a href="@Url.Action("Login", "User")">Đăng nhập</a></li>
-                            <li><a href="@Url.Action("Register", "User")">Đăng ký</a></li>
-                        </ul>
-                    </div>
-                    <nav class="menu_nav">
-                        <ul class="d-flex flex-column align-items-start justify-content-start">
-                            <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
-                            <li><a href="@Url.Action("About", "User")">About us</a></li>
-                            <!--<li><a href="@Url.Action("Music", "User")">Music</a></li>-->
-                            <li><a href="@Url.Action("Contact", "User")">Contact</a></li>
-                            <li><a href="@Url.Action("Single", "User")">Single</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
         <!-- Body -->
         @RenderBody()
-
-
 
 
         <!-- Footer -->
@@ -95,20 +68,20 @@
                         <div class="footer_list_title">Liên kết</div>
                         <ul>
                             <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
-                            <li><a href="@Url.Action("About", "User")">About us</a></li>
-                            <!--<li><a href="@Url.Action("Music", "User")">Music</a></li>-->
-                            <li><a href="@Url.Action("Contact", "User")">Contact</a></li>
+                            <li><a href="@Url.Action("About", "User")">Thể loại nhạc</a></li>
+                            <li><a href="@Url.Action("Music", "User")">Nghe nhạc</a></li>
+                            <li><a href="@Url.Action("Contact", "User")">Liên lạc</a></li>
                         </ul>
                     </div>
 
-                    <!-- Mixtape -->
+                    <!-- Quảng cáo -->
                     <div class="footer_list">
                         <div class="footer_list_title">Quảng cáo</div>
                         <ul>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">PR & Marketing</a></li>
                             <li><a href="#">Contact</a></li>
-                            <li><a href="@Url.Action("About", "User")">About us</a></li>
+                            <li><a href="#">About us</a></li>
                             <li><a href="#">Testimonials</a></li>
                         </ul>
                     </div>
@@ -129,10 +102,10 @@
             </div>
         </footer>
     </div>
-
+    <!-- Thêm script -->
     @RenderSection("plugin_script", required: false)
 
-    <!-- Thông báo gì đó-->
+    <!-- Thông báo gì đó -->
     <script>
         var msg = "@ViewBag.Message";
         if (msg) {
