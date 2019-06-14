@@ -1,0 +1,143 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @RenderSection("title", required: false)
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Mixtape template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @RenderSection("plugin_css", required: false)
+</head>
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="@Url.Action("Index", "User")">MTA EDU</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="@Url.Action("Login", "User")">Đăng nhập</a></li>
+                        <li><a href="@Url.Action("Register", "User")">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+
+                        <!-- Set page active now (interface) -->
+                        @RenderSection("NowActive")
+                        
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div>
+                <div class="menu_overlay"></div>
+                <div class="menu_container d-flex flex-column align-items-start justify-content-center">
+                    <div class="menu_log_reg">
+                        <ul class="d-flex flex-row align-items-start justify-content-start">
+                            <li><a href="@Url.Action("Login", "User")">Đăng nhập</a></li>
+                            <li><a href="@Url.Action("Register", "User")">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                    <nav class="menu_nav">
+                        <ul class="d-flex flex-column align-items-start justify-content-start">
+                            <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
+                            <li><a href="@Url.Action("About", "User")">About us</a></li>
+                            <!--<li><a href="@Url.Action("Music", "User")">Music</a></li>-->
+                            <li><a href="@Url.Action("Contact", "User")">Contact</a></li>
+                            <li><a href="@Url.Action("Single", "User")">Single</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Body -->
+        @RenderBody()
+
+
+
+
+        <!-- Footer -->
+
+        <footer class="footer">
+            <div class="footer_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+                <div class="newsletter_container">
+                    <div class="newsletter_title"><h2>Đăng ký theo dõi</h2></div>
+                    <form action="#" id="newsletter_form" class="newsletter_form">
+                        <input type="email" class="newsletter_input" placeholder="Địa chỉ E-mail" required="required">
+                        <button class="newsletter_button">Đăng ký</button>
+                    </form>
+                </div>
+                <div class="footer_lists d-flex flex-sm-row  flex-column align-items-start justify-content-start ml-xl-auto">
+
+                    <!-- Useful Links -->
+                    <div class="footer_list">
+                        <div class="footer_list_title">Liên kết</div>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
+                            <li><a href="@Url.Action("About", "User")">About us</a></li>
+                            <!--<li><a href="@Url.Action("Music", "User")">Music</a></li>-->
+                            <li><a href="@Url.Action("Contact", "User")">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Mixtape -->
+                    <div class="footer_list">
+                        <div class="footer_list_title">Quảng cáo</div>
+                        <ul>
+                            <li><a href="#">Music</a></li>
+                            <li><a href="#">PR & Marketing</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="@Url.Action("About", "User")">About us</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Connect -->
+                    <div class="footer_list">
+                        <div class="footer_list_title">Kết nối</div>
+                        <ul>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Shippings</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Social Media</a></li>
+                            <li><a href="#">Soundcloud</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @RenderSection("plugin_script", required: false)
+
+    <!-- Thông báo gì đó-->
+    <script>
+        var msg = "@ViewBag.Message";
+        if (msg) {
+            alert(msg);
+        }
+    </script>
+</body>
+</html>

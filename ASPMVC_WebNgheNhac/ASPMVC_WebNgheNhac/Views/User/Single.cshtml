@@ -1,0 +1,174 @@
+﻿
+@model List<ASPMVC_WebNgheNhac.Models.BANNHAC>
+
+@{
+    Layout = "~/Views/User/_UserViewer.cshtml";
+}
+
+@{
+int icount = Model.Count();
+}
+
+@section title{
+<title>Single</title>
+}
+
+@section plugin_css{
+<link rel="stylesheet" type="text/css" href="/Assets/styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="/Assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/Assets/styles/single.css">
+<link rel="stylesheet" type="text/css" href="/Assets/styles/single_responsive.css">
+}
+
+@section plugin_script{
+<script src="/Assets/js/jquery-3.2.1.min.js"></script>
+<script src="/Assets/styles/bootstrap-4.1.2/popper.js"></script>
+<script src="/Assets/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+<script src="/Assets/plugins/greensock/TweenMax.min.js"></script>
+<script src="/Assets/plugins/greensock/TimelineMax.min.js"></script>
+<script src="/Assets/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="/Assets/plugins/greensock/animation.gsap.min.js"></script>
+<script src="/Assets/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/Assets/plugins/easing/easing.js"></script>
+<script src="/Assets/plugins/progressbar/progressbar.min.js"></script>
+<script src="/Assets/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="/Assets/plugins/jPlayer/jquery.jplayer.min.js"></script>
+<script src="/Assets/plugins/jPlayer/jplayer.playlist.min.js"></script>
+<script src="/Assets/plugins/fit-vids/jquery.fitvids.js"></script>
+<script src="/Assets/js/single.js"></script>
+}
+
+@section NowActive{
+    <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
+    <li><a href="@Url.Action("About", "User")">Thể loại nhạc</a></li>
+    <li><a href="@Url.Action("Music", "User")">Nghe nhạc</a></li>
+    <li><a href="@Url.Action("Contact", "User")">Liên lạc</a></li>
+    <li class="active"><a href="@Url.Action("Single", "User")">Nghệ sĩ</a></li>
+}
+
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+        <!-- Image artist:  -->
+        <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="/Assets/images/single.jpg" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Giới thiệu</div>
+                <div class="home_title">Nghệ sỹ mới nổi</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Single -->
+
+<div class="single">
+    <div class="container">
+        <div class="row">
+            <!-- Single Info -->
+            <div class="col-lg-5">
+                <div class="single_info">
+                    <div class="single_image">
+                        <img src="/Assets/images/6a884d62ly1ftctis49gwj21hc0u07wi.jpg" alt="">
+                    </div>
+                    <div class="single_info_list">
+                        <ul>
+                            <li><span>Release date: </span>25 Tháng 08 Năm 2013</li>
+                            <li><span>Tags: </span>Sky</li>
+                            <li><span>Producers: </span>Tùng - Núi</li>
+                            <li><span>No of songs: </span>40</li>
+                        </ul>
+                    </div>
+                    <div class="logo_list d-flex flex-row align-items-center justify-content-start flex-wrap">
+                        <div><a href="#"><img src="/Assets/images/logo_1.png" alt=""></a></div>
+                        <div><a href="#"><img src="/Assets/images/logo_2.png" alt=""></a></div>
+                        <div><a href="#"><img src="/Assets/images/logo_3.png" alt=""></a></div>
+                        <div><a href="#"><img src="/Assets/images/logo_4.png" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Content -->
+            <div class="col-lg-7 single_content_col">
+                <div class="single_content">
+                    <div class="single_text">
+                        <p>Ngô Tất Tố sinh năm 1894 ở làng Lộc Hà, tổng Hội Phụ, phủ Từ Sơn, Bắc Ninh (nay là thôn Lộc Hà, xã Mai Lâm, huyện Đông Anh, Hà Nội). Ông là con thứ hai, nhưng là trưởng nam trong một gia đình có bảy anh chị em, ba trai, bốn gái. Lúc còn nhỏ Ngô Tất Tố được thụ hưởng một nền giáo dục Nho học. Từ năm 1898, Ngô Tất Tố được ông nội dạy vỡ lòng chữ Hán ở quê, sau đó ông theo học ở nhiều làng quê trong vùng. Năm 1912, Ngô Tất Tố học tư chữ Pháp một thời gian ngắn và bắt đầu tham dự các kỳ thi truyền thống lúc bấy giờ vẫn còn được triều đình nhà Nguyễn tổ chức.</p>
+                        <p>Năm 1926, Ngô Tất Tố ra Hà Nội làm báo. Ông viết cho tờ An Nam tạp chí. Nhưng vì thiếu tiền, tờ báo này phải tự đình bản, Ngô Tất Tố cùng với Tản Đà đã vào Sài Gòn. Mặc dù không thật sự thành công trong cuộc thử sức ở Nam Kì, nhưng tại đây, Ngô Tất Tố đã có cơ hội tiếp cận với tri thức và văn hóa thế giới ở vùng đất khi đó là thuộc địa chính thức của Pháp cũng như theo đuổi nghề báo để chuẩn bị sau này trở thành một nhà báo chuyên nghiệp.</p>
+                        <p>Sau gần ba năm ở Sài Gòn, Ngô Tất Tố trở ra Hà Nội. Ông tiếp tục sinh sống bằng cách viết bài cho các báo: An Nam tạp chí, Thần chung, Phổ thông, Đông Dương, Hải Phòng tuần báo, Thực nghiệp, Con ong, Việt nữ, Tiểu thuyết thứ ba, Tương lai, Công dân, Đông Pháp thời báo, Thời vụ, Hà Nội tân văn,Tuần lễ... với 29 bút danh khác nhau như: Thục Điểu, Lộc Hà, Lộc Đình, Thôn Dân, Phó Chi, Tuệ Nhơn, Thuyết Hải, Xuân Trào, Hy Cừ... Trong thời gian những năm 1936-1939, Ngô Tất Tố viết nhiều tác phẩm chỉ trích quan lại tham nhũng phong kiến.</p>
+                    </div>
+                    <div class="single_players">
+
+                        <!-- Single Player -->
+                        @for (int i = 0; i < icount; i++)
+                        {
+                            <div class="single_player_container d-flex flex-column align-items-start justify-content-center">
+                                <div class="single_player">
+                                    @{
+                                        string tam = "jplayer_" + (i + 1).ToString();
+                                        string tam2 = "jp_container_" + (i + 1).ToString();
+                                    }
+                                    <div id="@tam" class="jp-jplayer"></div>
+                                    <div id="@tam2" class="jp-audio" role="application" aria-label="media player">
+                                        <div class="jp-type-single">
+                                            <div class="player_details d-flex flex-row align-items-center justify-content-start">
+                                                <div class="jp-details">
+                                                    <div>playing</div>
+                                                    <div class="jp-title" aria-label="title">&nbsp;</div>
+                                                </div>
+                                                <div class="jp-controls-holder ml-auto">
+                                                    <button class="jp-play" tabindex="0"></button>
+                                                </div>
+                                            </div>
+                                            <div class="player_controls">
+                                                <div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-start">
+                                                        <div><div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div></div>
+                                                        <div class="jp-progress">
+                                                            <div class="jp-seek-bar">
+                                                                <div class="jp-play-bar"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div><div class="jp-duration ml-auto" role="timer" aria-label="duration">&nbsp;</div></div>
+                                                    </div>
+                                                    <div class="jp-volume-controls d-flex flex-row align-items-center justify-content-start ml-auto">
+                                                        <button class="jp-mute" tabindex="0"></button>
+                                                        <div class="jp-volume-bar">
+                                                            <div class="jp-volume-bar-value"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="jp-no-solution">
+                                                <span>Update Required</span>
+                                                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video -->
+
+<div class="video">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="video_container">
+                    @*width="560" height="315"*@
+                    <iframe width="1260" height="740" src="https://www.youtube.com/embed/A2IgMDJltZQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

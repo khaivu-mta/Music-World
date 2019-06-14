@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ASPMVC_WebNgheNhac.Models.DANHSACHNHAC>
+
+@{
+    ViewBag.Title = "Library_DANHSACHNHAC";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<div class="table-responsive">
+    @Html.ActionLink("Thêm mới", "Edit", new { id = "DANHSACHNHAC" })
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaDanhSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDanhSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayTao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaDanhSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDanhSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayTao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </tfoot>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDanhSach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDanhSach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayTao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuongDanAnh)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = "DANHSACHNHAC", _Value = item.MaDanhSach }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = "DANHSACHNHAC", _Value = item.MaDanhSach })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ASPMVC_WebNgheNhac.Models.QUYENTRUYCAP>
+
+@{
+    ViewBag.Title = "Library_QUYENTRUYCAP";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<div class="table-responsive">
+    @Html.ActionLink("Thêm mới", "Edit", new { id = "QUYENTRUYCAP" })
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenQuyenTruyCap)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenQuyenTruyCap)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </tfoot>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenQuyenTruyCap)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = "QUYENTRUYCAP", _Value = item.MaQuyenTruyCap }) |
+                    @*@Html.ActionLink("Delete", "Delete", new { id = "QUYENTRUYCAP", _Value = item.MaQuyenTruyCap })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

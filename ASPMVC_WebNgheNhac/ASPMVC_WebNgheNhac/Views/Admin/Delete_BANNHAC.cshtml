@@ -1,0 +1,116 @@
+﻿@model ASPMVC_WebNgheNhac.Models.BANNHAC
+
+@{
+    ViewBag.Title = "Delete_BANNHAC";
+    Layout = null;//"~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="@Url.Action("Login", "User")">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BANNHAC</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenBanNhac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenBanNhac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TacGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TacGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KichThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KichThuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoDai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoDai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TanSo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TanSo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DinhDang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DinhDang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NamSanXuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamSanXuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DuongDanBanNhac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DuongDanBanNhac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DuongDanAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DuongDanAnh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Library", new { id = "BANNHAC" })
+        </div>
+    }
+</div>
+*@

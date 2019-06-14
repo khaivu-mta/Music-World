@@ -1,0 +1,97 @@
+﻿@model ASPMVC_WebNgheNhac.Models.BANNHAC
+
+@{
+    ViewBag.Title = "Edit_BANNHAC";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaBanNhac)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenBanNhac, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenBanNhac, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenBanNhac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TacGia, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KichThuoc, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KichThuoc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KichThuoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoDai, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DoDai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DoDai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TanSo, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TanSo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TanSo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DinhDang, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DinhDang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DinhDang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NamSanXuat, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NamSanXuat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NamSanXuat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DuongDanBanNhac, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DuongDanBanNhac, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DuongDanBanNhac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DuongDanAnh, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DuongDanAnh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DuongDanAnh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Library", new { id = "BANNHAC" })
+</div>

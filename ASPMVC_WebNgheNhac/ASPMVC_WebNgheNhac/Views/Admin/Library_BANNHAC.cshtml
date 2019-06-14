@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ASPMVC_WebNgheNhac.Models.BANNHAC>
+
+@{
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+<div class="table-responsive">
+    @Html.ActionLink("Thêm mới", "Edit", new { id = "BANNHAC" })
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenBanNhac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TacGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KichThuoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoDai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TanSo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinhDang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NamSanXuat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanBanNhac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenBanNhac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TacGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KichThuoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoDai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TanSo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinhDang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NamSanXuat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanBanNhac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </tfoot>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenBanNhac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TacGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KichThuoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoDai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TanSo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DinhDang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamSanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuongDanBanNhac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuongDanAnh)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = "BANNHAC", _Value = item.MaBanNhac }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = "BANNHAC", _Value = item.MaBanNhac })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

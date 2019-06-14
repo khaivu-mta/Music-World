@@ -1,0 +1,26 @@
+﻿@model List<ASPMVC_WebNgheNhac.Models.BANNHAC>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/User/_Test.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+    <th>
+        @item.TenBanNhac
+    </th>
+    <th>
+        @item.TacGia
+    </th>
+    <th>
+        @item.DoDai
+    </th>
+    <th>
+        @item.DinhDang
+    </th>
+    <th>
+        @item.DuongDanAnh
+    </th>
+}

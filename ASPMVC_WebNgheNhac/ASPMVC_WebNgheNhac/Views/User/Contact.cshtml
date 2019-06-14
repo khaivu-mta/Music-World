@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/User/_UserViewer.cshtml";
+}
+
+@section title{
+    <title>Contact Us</title>
+}
+
+@section plugin_css{
+<link rel="stylesheet" type="text/css" href="/Assets/styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="/Assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/Assets/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/Assets/styles/contact.css">
+<link rel="stylesheet" type="text/css" href="/Assets/styles/contact_responsive.css">
+}
+
+@section plugin_script{
+<script src="/Assets/js/jquery-3.2.1.min.js"></script>
+<script src="/Assets/styles/bootstrap-4.1.2/popper.js"></script>
+<script src="/Assets/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+<script src="/Assets/plugins/greensock/TweenMax.min.js"></script>
+<script src="/Assets/plugins/greensock/TimelineMax.min.js"></script>
+<script src="/Assets/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="/Assets/plugins/greensock/animation.gsap.min.js"></script>
+<script src="/Assets/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/Assets/plugins/easing/easing.js"></script>
+<script src="/Assets/plugins/progressbar/progressbar.min.js"></script>
+<script src="/Assets/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="/Assets/plugins/jPlayer/jquery.jplayer.min.js"></script>
+<script src="/Assets/plugins/jPlayer/jplayer.playlist.min.js"></script>
+<script src="/Assets/js/contact.js"></script>
+}
+
+@section NowActive{
+<li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
+<li><a href="@Url.Action("About", "User")">Thể loại nhạc</a></li>
+<li><a href="@Url.Action("Music", "User")">Nghe nhạc</a></li>
+<li class="active"><a href="@Url.Action("Contact", "User")">Liên lạc</a></li>
+<li><a href="@Url.Action("Single", "User")">Nghệ sĩ</a></li>
+}
+
+
+
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+        <!-- Image artist:  -->
+        <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="/Assets/images/contact.jpg" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Chúng tôi</div>
+                <div class="home_title">Xây dựng nên nó...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact -->
+
+<div class="contact">
+    <div class="container">
+        <div class="row">
+
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="contact_form_container">
+                    <div class="contact_title">Liên lạc với chúng tôi</div>
+                    <form action="#" class="contact_form" id="Parameter">
+                        <input type="text" class="contact_input" placeholder="Tên của bạn" required="required">
+                        <input type="email" class="contact_input" placeholder="Địa chỉ E-mail" required="required">
+                        <input type="text" class="contact_input" placeholder="Nhan đề">
+                        <textarea class="contact_input contact_textarea" placeholder="Tin nhắn của bạn" required="required"></textarea>
+                        <button class="contact_button">Gửi tin nhắn</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-6 contact_col">
+                <div class="contact_info">
+                    <div class="contact_title">Làm thế nào để gặp chúng tôi?</div>
+                    <div class="contact_text">
+                        <p>Mùa xuân đến hoa đua nhau khoe sắc nở.Hoa nào cũng đẹp, hoa nào cũng toả hương thơm. Nhưng tôi lại thích ngắm nhìn cây mai vang trổ hoa trong những ngày tết đến. Gia đình tôi ở Miền Nam nên không có hoa đào như ở Miền Bắc. Lá mai nhọn, hao hao giống lá chè. Trời cuối đông, lá mai vàng úa rồi lác đác rụng. Mỗi chiếc lá có một tâm tình riêng. Có chiếc lá thản nhiên rụng xuống cho xong chuyện, không do dự vẩn vơ. Có chiếc lá nhẹ nhàng bay lượn với làn gió thoảng. Có chiếc lá ngần ngại, rụt rè, lưu luyến khi phải xa cành, phải đợi người trồng mai tận tay tỉa chúng. Trước khi đón tết, mai vàng chỉ còn lại những cành khẳng khiu, trụi lá. Duy nhất, là có cái gốc trông vững chải. Tuy vậy, mai vẫn có dáng chiều quằn, chiều lượn, uyển chuyển lắm. Nhìn cây tôi tưởng rằng cây không còn sức sống nhưng đâu nghĩ được rằng dó là sự hi sinh cao cả. Những chiếc lá già đã nhường chỗ cho những chiếc lá non đang lặng lẽ ươm mầm, tiếp tục vươn lên để làm đẹp cho đời. Ngày tết đến, cùng với cảnh giao mùa, cây mai vàng nở rộ, lung linh những chùm hoa tươi thắm. Hoa mai cũng năm cánh như hoa đào nhưng cánh hoa mai to hơn cánh hoa đào một chút. Màu hoa vàng tươi, ấp áp.</p>
+                    </div>
+                    <div class="contact_info_list">
+                        <ul>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div>Địa chỉ</div></div>
+                                <div>Học viện kỹ thuật quân sự - 236 Hoàng Quốc Việt</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div>Điện thoại</div></div>
+                                <div>069.698.586</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div>E-mail</div></div>
+                                <div>info@mta.edu.vn</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul class="d-flex flex-row align-items-center justify-content-start">
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
