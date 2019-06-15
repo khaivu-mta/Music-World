@@ -13,6 +13,9 @@
                     @Html.DisplayNameFor(model => model.TenTheLoai)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
                     Hành động
                 </th>
             </tr>
@@ -21,6 +24,9 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.TenTheLoai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanAnh)
                 </th>
                 <th>
                     Hành động
@@ -32,6 +38,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenTheLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuongDanAnh)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = "THELOAI", _Value = item.MaTheLoai }) |

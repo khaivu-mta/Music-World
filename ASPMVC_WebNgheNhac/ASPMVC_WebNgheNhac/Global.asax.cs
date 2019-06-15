@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace ASPMVC_WebNgheNhac
 {
-    public enum DbTable
+    public enum MyTable
     {
         BANNHAC,
         DANHSACHNHAC,
@@ -16,6 +16,8 @@ namespace ASPMVC_WebNgheNhac
         NGUOIDUNG,
         NGUOIDUNG_DANHSACHNHAC,
         QUYENTRUYCAP,
+        TACGIA,
+        TACGIA_BANNHAC,
         THELOAI,
         THELOAI_BANNHAC,
     }
@@ -27,21 +29,13 @@ namespace ASPMVC_WebNgheNhac
             if (db.Database.CreateIfNotExists())
             {
                 db.Database.ExecuteSqlCommand(@"CREATE PROCEDURE PROC_CreateDefaultRecord AS BEGIN
-SET IDENTITY_INSERT [dbo].[QUYENTRUYCAP] ON 
-
-INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (-1, N'Không xác định')
-INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (0, N'Người dùng')
-INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (1, N'Admin')
-SET IDENTITY_INSERT [dbo].[QUYENTRUYCAP] OFF
-INSERT [dbo].[NGUOIDUNG] ([Email], [MatKhau], [HoTen], [DuongDanAnh], [MaQuyenTruyCap]) VALUES (N'admin@email.com', N'admin', N'Vũ Quang Khải', NULL, 1)
-INSERT [dbo].[NGUOIDUNG] ([Email], [MatKhau], [HoTen], [DuongDanAnh], [MaQuyenTruyCap]) VALUES (N'khaivu@gmail.com', N'admin', N'Vũ Quang Khải', NULL, 1)
 SET IDENTITY_INSERT [dbo].[TACGIA] ON 
 
 INSERT [dbo].[TACGIA] ([MaTacGia], [HoTen], [NgaySinh], [NgayBatDau], [SoLuongBaiHat], [GioiThieu], [DuongDanAnh], [LienKet], [HienThiTrenTrangChu]) VALUES (1, N'Adam Lambert', CAST(0x0000751A00000000 AS DateTime), CAST(0x0000964700000000 AS DateTime), 25, N'Adam Lambert được sinh ra tại Indianapolis, Indiana vào ngày 29 tháng 1 năm 1982. Mẹ là Leila Mitchel, một nhà thiết kế nội thất, và cha - Eber Lambert, một người quản lý chương trình cho Novatel Wireless. Anh có một người em trai, Neil. Cha của Adam là người gốc Na Uy và mẹ là người Do Thái gốc Rômania. Lambert được nuôi lớn trong tôn giáo của mẹ và từ đó mà anh đã thực hiện một số sự kiện của người Do thái bằng tiếng Hewbrew, hát những bài hát như *Shir LaShalom* tại 1 buổi hòa nhạc tưởng nhớ Thủ tướng Yitzhak Rabin bị ám sát của Israel và biểu diễn tại San Diego *Ngôi Đền của Nghệ thuật* nhiều lần.
 
 Ít lâu sau khi Lambert ra đời, gia đình anh di chuyển đến California khi 1 cơ hội việc làm mở ra cho cha anh tại San Diego. Lúc đầu, họ sống ở Rancho Bernardo--115.77.4.115 (thảo luận) 08:51, ngày 14 tháng 2 năm 2012 (UTC)--115.77.4.115 (thảo luận) 08:51, ngày 14 tháng 2 năm 2012 (UTC) nhưng chuyển đến Peñasquitos Rancho sau khi em trai của anh đã được sinh ra. Từ khi bắt đầu học tại Trường tiểu học Deer Canyon, Lambert bắt đầu diễn tại Nhà hát Metropolitan từ khi chín tuổi và xuất hiện trong các vở kịch địa phương như: You''re a Good Man, Charlie Brown, và Fiddler on the Roof. Khoảng thời gian này, Lambert cũng bắt đầu được luyện giọng và tiếp tục niềm đam mê của mình khi anh bắt đầu học tại trường trung học cơ sở Mesa Verde.
 
-Trong khi đang học tại trường cấp 3 Mount Carmel (MCHS), Lambert càng bị ảnh hưởng bởi nhà hát và dàn hợp xướng, anh thường xuyên biểu diễn với ban nhạc jazz của trường Jazz MC. Sau khi tốt nghiệp vào năm 2000, ông chuyển đến Orange County để học đại học. Ngay sau khi ghi danh Lambert đã có một sự thay đổi trong trái tim, thúc đẩy bởi mong muốn mãnh liệt của mình. Và anh bỏ học chỉ sau năm tuần và chuyển đến Los Angeles. *Tôi quyết định rằng những gì tôi thực sự muốn làm là cố gắng làm việc trong thế giới giải trí,* anh nói. *Cuộc sống là chấp nhận tất cả những rủi ro để có được những gì bạn muốn.*', N'/Assets/images/1500605449098.jpg', N'https://g.co/kgs/SNnyfW', 0)
+Trong khi đang học tại trường cấp 3 Mount Carmel (MCHS), Lambert càng bị ảnh hưởng bởi nhà hát và dàn hợp xướng, anh thường xuyên biểu diễn với ban nhạc jazz của trường Jazz MC. Sau khi tốt nghiệp vào năm 2000, ông chuyển đến Orange County để học đại học. Ngay sau khi ghi danh Lambert đã có một sự thay đổi trong trái tim, thúc đẩy bởi mong muốn mãnh liệt của mình. Và anh bỏ học chỉ sau năm tuần và chuyển đến Los Angeles. *Tôi quyết định rằng những gì tôi thực sự muốn làm là cố gắng làm việc trong thế giới giải trí,* anh nói. *Cuộc sống là chấp nhận tất cả những rủi ro để có được những gì bạn muốn.*', N'/Assets/images/Adam-Lambert300x300.jpg', N'https://g.co/kgs/SNnyfW', 0)
 INSERT [dbo].[TACGIA] ([MaTacGia], [HoTen], [NgaySinh], [NgayBatDau], [SoLuongBaiHat], [GioiThieu], [DuongDanAnh], [LienKet], [HienThiTrenTrangChu]) VALUES (2, N'Da LAB', CAST(0x0000808400000000 AS DateTime), CAST(0x0000808400000000 AS DateTime), 34, NULL, N'/Assets/images/1535121377317.jpg', N'https://g.co/kgs/45EM7F', 0)
 INSERT [dbo].[TACGIA] ([MaTacGia], [HoTen], [NgaySinh], [NgayBatDau], [SoLuongBaiHat], [GioiThieu], [DuongDanAnh], [LienKet], [HienThiTrenTrangChu]) VALUES (3, N'Am1r', CAST(0x00008BEE00000000 AS DateTime), CAST(0x0000808400000000 AS DateTime), 54, NULL, N'/Assets/images/1527581834391.jpg', N'https://en.wikipedia.org/wiki/Right_Now_(Na_Na_Na)', 0)
 INSERT [dbo].[TACGIA] ([MaTacGia], [HoTen], [NgaySinh], [NgayBatDau], [SoLuongBaiHat], [GioiThieu], [DuongDanAnh], [LienKet], [HienThiTrenTrangChu]) VALUES (4, N'Linkin Park', CAST(0x0000A15500000000 AS DateTime), CAST(0x0000808400000000 AS DateTime), 60, N'Linkin Park là một ban nhạc rock ở Agoura Hills, California. Họ là ban nhạc nổi tiếng và thành công nhất của thể loại nu metal, chủ yếu do album đầu tiên, Hybrid Theory năm 2000, đã bán được 24 triệu bản trên thế giới[1], trở thành ban nhạc có một trong những album được bán ra nhiều nhất thế kỷ 21[2][3]. Họ tiếp tục thành công với album Meteora, đứng đầu bảng xếp hạng album Billboard 200 năm 2003. Năm 2003, MTV xếp họ vào 6 nhóm nhạc rock đứng đầu kỷ nguyên music video và 3 nhóm nhạc rock thành công nhất của kỷ nguyên mới, chỉ sau Oasis và Coldplay[cần dẫn nguồn].
@@ -73,8 +67,32 @@ Cho đến năm 2003, Elle tham gia *The Door in the Floor* cùng Jeff Bridges v
 
 
 Elle Fanning trong buổi họp báo giữa năm 2014 tại San Diego Convention Center tại San Diego, California.
-Đến cuối năm 2006, Elle dần được yêu mến qua các vai chính. Vai chính đầu tiên trong *Reservation Road* là Emma Learner, vai con gái của Joaquin Phoenix và Jennifer Connelly. Bộ phim kết thúc với tai nạn thảm khốc và em trai của Emma đã tử nạn. Cuối năm 2008, cô tham gia phim The Curious Case of Benjamin Button với vai thời thơ ấu của Cate Blanchett. Giữa năm 2007, cô bé trở lại trong Phoebe in Wonderland vai Phoebe. Câu chuyện kể về 1 cô bé không thể tuân theo và muốn phá vỡ mọi nguyên tắc cứng nhắc. Phim có sự tham gia của Felicity Huffman ra mắt khán giả vào tháng 3 năm 2009.', N'/Assets/images/5c7da043c5ee982b11185f2eaf0c675f.jpg', N'https://vi.wikipedia.org/wiki/Elle_Fanning', 1)
+Đến cuối năm 2006, Elle dần được yêu mến qua các vai chính. Vai chính đầu tiên trong *Reservation Road* là Emma Learner, vai con gái của Joaquin Phoenix và Jennifer Connelly. Bộ phim kết thúc với tai nạn thảm khốc và em trai của Emma đã tử nạn. Cuối năm 2008, cô tham gia phim The Curious Case of Benjamin Button với vai thời thơ ấu của Cate Blanchett. Giữa năm 2007, cô bé trở lại trong Phoebe in Wonderland vai Phoebe. Câu chuyện kể về 1 cô bé không thể tuân theo và muốn phá vỡ mọi nguyên tắc cứng nhắc. Phim có sự tham gia của Felicity Huffman ra mắt khán giả vào tháng 3 năm 2009.', N'/Assets/images/elle-fanning_640x640y.jpg', N'https://vi.wikipedia.org/wiki/Elle_Fanning', 1)
 SET IDENTITY_INSERT [dbo].[TACGIA] OFF
+SET IDENTITY_INSERT [dbo].[BANNHAC] ON 
+
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (1, N'Runnin''', 1, 4, 228, 48000, N'mp3', 2012, N'/Assets/files/Falling Apart - Michael Schulte.mp3', N'/Assets/images/Adam-Lambert152x152.jpg', N'https://www.youtube.com/watch?v=KoJW3ob0Xt8')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (2, N'Thanh Xuân', 2, 4, 228, 48000, N'mp3', 2014, N'/Assets/files/Protectors Of The Earth Cinematic - Two Steps From Hell.mp3', N'/Assets/images/Music_player_logo152x152.png', N'https://www.youtube.com/watch?v=GgQFO8dL5XQ')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (3, N'Right Now (Na Na Na)', 3, 4, 228, 48000, N'mp3', 2012, N'/Assets/files/The anser - Fang Yu Jie (Đáp án - Phương Vũ Kiệt).mp3', N'/Assets/images/Music_player_logo152x152.png', N'https://www.youtube.com/watch?v=h_CEubK2qY8')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (4, N'In The End', 4, 4, 228, 48000, N'mp3', 2014, N'/Assets/files/NeverGiveUpOnYourDreams-TwoStepsFromHell.mp3', N'/Assets/images/Music_player_logo152x152.png', N'https://www.youtube.com/watch?v=WNeLUngb-Xg')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (5, N'Falling Apart', 5, 4, 228, 48000, N'mp3', 2016, N'/Assets/files/Right Now (Na Na Na) - Am1r (cover).mp3', N'/Assets/images/Music_player_logo152x152.png', N'https://www.youtube.com/watch?v=aqYnMSUTFGU')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (6, N'Dynasty', 6, 4, 228, 48000, N'mp3', 2016, N'/Assets/files/Thanh Xuân - Da LAB.mp3', N'/Assets/images/Music_player_logo152x152.png', N'https://www.youtube.com/watch?v=8JSdy3nLLYA')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (7, N'Như Ngày Hôm Qua', 7, 7, 7, 36000, N'mp3', 2016, N'/Assets/files/Thanh Xuân - Da LAB.mp3', N'/Assets/images/6.jpg', N'https://www.youtube.com/watch?v=P6NVGLcZlEs')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (8, N'Anh Ơi Ở Lại', 8, 4, 9, 12000, N'mp3', 2012, N'/Assets/files/The anser - Fang Yu Jie (Đáp án - Phương Vũ Kiệt).mp3', N'/Assets/images/7.jpg', N'https://www.youtube.com/watch?v=3fi7uwBU-CE')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (9, N'Người Nào Hay', 8, 5, 12, 12000, N'mp3', 2012, N'/Assets/files/Never Give Up On Your Dreams - Two Steps From Hell.mp3', N'/Assets/images/8.jpg', N'https://www.youtube.com/watch?v=gpD0CTxMYts')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (10, N'Tiểu Thư Cá Tính', 8, 7, 8, 36000, N'mp3', 2012, N'/Assets/files/Protectors Of The Earth Cinematic - Two Steps From Hell.mp3', N'/Assets/images/9.jpg', N'https://www.youtube.com/watch?v=Y33AOPcwu_s')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (11, N'Vườn Cây Của Ba', 9, 4, 11, 12000, N'mp3', 2014, N'/Assets/files/Two Steps From Hell - Heart Of Courage.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=p4Iq7G82n3s')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (12, N'Gió Mùa Xuân Tới', 9, 4, 11, 48000, N'mp3', 2016, N'/Assets/files/Victory - Two Steps From Hell.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=JbzFEc0RjiU')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (13, N'Quả Gì', 9, 4, 12, 12000, N'mp3', 2014, N'/Assets/files/Symphony-RobinHustin-Remix.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=CGO6ljmDmHM')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (14, N'Rửa Mặt Như Mèo', 9, 7, 11, 48000, N'mp3', 2016, N'/Assets/files/Dancin - Aaron Smith (KRONO Remix).mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=SVAdm_rM-s4')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (15, N'Never Give Up On Your Dreams', 10, 5501, 320, 48000, N'mp3', 2014, N'/Assets/files/NeverGiveUpOnYourDreams-TwoStepsFromHell.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=V17ij5Ap1pA')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (16, N'Nắng Ấm Xa Dần', 7, 4, 4, 48000, N'mp3', 2012, N'/Assets/files/Dynasty - MIIA.mp3', N'/Assets/images/1.jpg', N'https://www.youtube.com/watch?v=ErhGuwNgrmw')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (17, N'Thái Bình Mồ Hôi Rơi', 7, 6, 6, 48000, N'mp3', 2012, N'/Assets/files/Falling Apart - Michael Schulte.mp3', N'/Assets/images/1.jpg', N'https://www.youtube.com/watch?v=5Jm9g0YdGDU')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (18, N'Âm Thầm Bên Em', 7, 7, 3, 48000, N'mp3', 2014, N'/Assets/files/I Miss You - Czarina.mp3', N'/Assets/images/2.jpg', N'https://www.youtube.com/watch?v=30KI5SuECuc')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (19, N'Không Phải Dạng Vừa Đâu', 7, 6, 11, 48000, N'mp3', 2014, N'/Assets/files/In The End - Linkin Park (Mellen Gi & Tommee Profitt Remix).mp3', N'/Assets/images/3.jpg', N'https://www.youtube.com/watch?v=fb3Eeyzi6XY')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (20, N'Em Của Ngày Hôm Qua', 7, 4, 3, 48000, N'mp3', 2012, N'/Assets/files/Right Now (Na Na Na) - Am1r (cover).mp3', N'/Assets/images/4.jpg', N'https://www.youtube.com/watch?v=5iMx3tlpFeY')
+INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (21, N'Buông Đôi Tay Nhau Ra', 7, 5, 7, 36000, N'mp3', 2014, N'/Assets/files/Runnin'' - Adam Lambert.mp3', N'/Assets/images/5.jpg', N'https://www.youtube.com/watch?v=LCyo565N_5w')
+SET IDENTITY_INSERT [dbo].[BANNHAC] OFF
 SET IDENTITY_INSERT [dbo].[DANHSACHNHAC] ON 
 
 INSERT [dbo].[DANHSACHNHAC] ([MaDanhSach], [TenDanhSach], [MaTacGia], [NgayTao], [LuongTruyCap], [DuongDanTrucTuyen], [DuongDanAnh]) VALUES (1, N'Quỷ Kiếm Darkin', 1, CAST(0x0000AA4B00000000 AS DateTime), 100, N'https://soundcloud.com/linkin_park', N'/Assets/images/stay_close_by_softyrider62-dami1hw.jpg')
@@ -94,30 +112,22 @@ INSERT [dbo].[DANHSACHNHAC] ([MaDanhSach], [TenDanhSach], [MaTacGia], [NgayTao],
 INSERT [dbo].[DANHSACHNHAC] ([MaDanhSach], [TenDanhSach], [MaTacGia], [NgayTao], [LuongTruyCap], [DuongDanTrucTuyen], [DuongDanAnh]) VALUES (15, N'Cảnh Sát Trưởng Piltover', 2, CAST(0x0000AA5900000000 AS DateTime), 12, N'https://soundcloud.com/martingarrix/pizza', N'/Assets/images/photo-1533770699395-5761e5d08106.jpg')
 INSERT [dbo].[DANHSACHNHAC] ([MaDanhSach], [TenDanhSach], [MaTacGia], [NgayTao], [LuongTruyCap], [DuongDanTrucTuyen], [DuongDanAnh]) VALUES (16, N'Xà Nữ', 1, CAST(0x0000AA5A00000000 AS DateTime), 4, N'https://soundcloud.com/martingarrix/stbla', N'/Assets/images/photo-1533770699395-5761e5d08106.jpg')
 SET IDENTITY_INSERT [dbo].[DANHSACHNHAC] OFF
-SET IDENTITY_INSERT [dbo].[BANNHAC] ON 
-
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (1, N'Runnin''', 1, 4, 228, 48000, N'mp3', 2012, N'/Assets/files/Falling Apart - Michael Schulte.mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=KoJW3ob0Xt8')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (2, N'Thanh Xuân', 2, 4, 228, 48000, N'mp3', 2014, N'/Assets/files/Protectors Of The Earth Cinematic - Two Steps From Hell.mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=GgQFO8dL5XQ')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (3, N'Right Now (Na Na Na)', 3, 4, 228, 48000, N'mp3', 2012, N'/Assets/files/The anser - Fang Yu Jie (Đáp án - Phương Vũ Kiệt).mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=h_CEubK2qY8')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (4, N'In The End', 4, 4, 228, 48000, N'mp3', 2014, N'/Assets/files/NeverGiveUpOnYourDreams-TwoStepsFromHell.mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=WNeLUngb-Xg')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (5, N'Falling Apart', 5, 4, 228, 48000, N'mp3', 2016, N'/Assets/files/Right Now (Na Na Na) - Am1r (cover).mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=aqYnMSUTFGU')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (6, N'Dynasty', 6, 4, 228, 48000, N'mp3', 2016, N'/Assets/files/Thanh Xuân - Da LAB.mp3', N'/Assets/images/avatar152x152.jpg', N'https://www.youtube.com/watch?v=8JSdy3nLLYA')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (7, N'Như Ngày Hôm Qua', 7, 7, 7, 36000, N'mp3', 2016, N'/Assets/files/Thanh Xuân - Da LAB.mp3', N'/Assets/images/6.jpg', N'https://www.youtube.com/watch?v=P6NVGLcZlEs')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (8, N'Anh Ơi Ở Lại', 8, 4, 9, 12000, N'mp3', 2012, N'/Assets/files/The anser - Fang Yu Jie (Đáp án - Phương Vũ Kiệt).mp3', N'/Assets/images/7.jpg', N'https://www.youtube.com/watch?v=3fi7uwBU-CE')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (9, N'Người Nào Hay', 8, 5, 12, 12000, N'mp3', 2012, N'/Assets/files/Never Give Up On Your Dreams - Two Steps From Hell.mp3', N'/Assets/images/8.jpg', N'https://www.youtube.com/watch?v=gpD0CTxMYts')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (10, N'Tiểu Thư Cá Tính', 8, 7, 8, 36000, N'mp3', 2012, N'/Assets/files/Protectors Of The Earth Cinematic - Two Steps From Hell.mp3', N'/Assets/images/9.jpg', N'https://www.youtube.com/watch?v=Y33AOPcwu_s')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (11, N'Vườn Cây Của Ba', 9, 4, 11, 12000, N'mp3', 2014, N'/Assets/files/Two Steps From Hell - Heart Of Courage.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=p4Iq7G82n3s')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (12, N'Gió Mùa Xuân Tới', 9, 4, 11, 48000, N'mp3', 2016, N'/Assets/files/Victory - Two Steps From Hell.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=JbzFEc0RjiU')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (13, N'Quả Gì', 9, 4, 12, 12000, N'mp3', 2014, N'/Assets/files/Symphony-RobinHustin-Remix.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=CGO6ljmDmHM')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (14, N'Rửa Mặt Như Mèo', 9, 7, 11, 48000, N'mp3', 2016, N'/Assets/files/Dancin - Aaron Smith (KRONO Remix).mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=SVAdm_rM-s4')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (15, N'Never Give Up On Your Dreams', 10, 5501, 320, 48000, N'mp3', 2014, N'/Assets/files/NeverGiveUpOnYourDreams-TwoStepsFromHell.mp3', N'/Assets/images/10.jpg', N'https://www.youtube.com/watch?v=V17ij5Ap1pA')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (16, N'Nắng Ấm Xa Dần', 7, 4, 4, 48000, N'mp3', 2012, N'/Assets/files/Dynasty - MIIA.mp3', N'/Assets/images/1.jpg', N'https://www.youtube.com/watch?v=ErhGuwNgrmw')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (17, N'Thái Bình Mồ Hôi Rơi', 7, 6, 6, 48000, N'mp3', 2012, N'/Assets/files/Falling Apart - Michael Schulte.mp3', N'/Assets/images/1.jpg', N'https://www.youtube.com/watch?v=5Jm9g0YdGDU')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (18, N'Âm Thầm Bên Em', 7, 7, 3, 48000, N'mp3', 2014, N'/Assets/files/I Miss You - Czarina.mp3', N'/Assets/images/2.jpg', N'https://www.youtube.com/watch?v=30KI5SuECuc')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (19, N'Không Phải Dạng Vừa Đâu', 7, 6, 11, 48000, N'mp3', 2014, N'/Assets/files/In The End - Linkin Park (Mellen Gi & Tommee Profitt Remix).mp3', N'/Assets/images/3.jpg', N'https://www.youtube.com/watch?v=fb3Eeyzi6XY')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (20, N'Em Của Ngày Hôm Qua', 7, 4, 3, 48000, N'mp3', 2012, N'/Assets/files/Right Now (Na Na Na) - Am1r (cover).mp3', N'/Assets/images/4.jpg', N'https://www.youtube.com/watch?v=5iMx3tlpFeY')
-INSERT [dbo].[BANNHAC] ([MaBanNhac], [TenBanNhac], [MaTacGia], [KichThuoc], [DoDai], [TanSo], [DinhDang], [NamSanXuat], [DuongDanBanNhac], [DuongDanAnh], [DuongDanTrucTuyen]) VALUES (21, N'Buông Đôi Tay Nhau Ra', 7, 5, 7, 36000, N'mp3', 2014, N'/Assets/files/Runnin'' - Adam Lambert.mp3', N'/Assets/images/5.jpg', N'https://www.youtube.com/watch?v=LCyo565N_5w')
-SET IDENTITY_INSERT [dbo].[BANNHAC] OFF
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 1)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 2)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 3)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 4)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 5)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 2)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 3)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 4)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 1)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 3)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 4)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 1)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 2)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 5)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (5, 6)
+INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (5, 7)
 SET IDENTITY_INSERT [dbo].[THELOAI] ON 
 
 INSERT [dbo].[THELOAI] ([MaTheLoai], [TenTheLoai], [DuongDanAnh]) VALUES (1, N'Pop', N'/Assets/images/POP-Music-l.jpg')
@@ -140,22 +150,14 @@ INSERT [dbo].[THELOAI] ([MaTheLoai], [TenTheLoai], [DuongDanAnh]) VALUES (17, N'
 INSERT [dbo].[THELOAI] ([MaTheLoai], [TenTheLoai], [DuongDanAnh]) VALUES (18, N'EDM', N'/Assets/images/edm-music.jpg')
 INSERT [dbo].[THELOAI] ([MaTheLoai], [TenTheLoai], [DuongDanAnh]) VALUES (19, N'Epic', N'/Assets/images/edm-music.jpg')
 SET IDENTITY_INSERT [dbo].[THELOAI] OFF
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 1)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 2)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 3)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 4)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (1, 5)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 2)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 3)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (2, 4)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 1)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 3)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (3, 4)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 1)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 2)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (4, 5)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (5, 6)
-INSERT [dbo].[DANHSACHNHAC_BANNHAC] ([MaDanhSach], [MaBanNhac]) VALUES (5, 7)
+SET IDENTITY_INSERT [dbo].[QUYENTRUYCAP] ON 
+
+INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (-1, N'Không xác định')
+INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (0, N'Người dùng')
+INSERT [dbo].[QUYENTRUYCAP] ([MaQuyenTruyCap], [TenQuyenTruyCap]) VALUES (1, N'Admin')
+SET IDENTITY_INSERT [dbo].[QUYENTRUYCAP] OFF
+INSERT [dbo].[NGUOIDUNG] ([Email], [MatKhau], [HoTen], [DuongDanAnh], [MaQuyenTruyCap]) VALUES (N'admin@email.com', N'admin', N'Vũ Quang Khải', NULL, 1)
+INSERT [dbo].[NGUOIDUNG] ([Email], [MatKhau], [HoTen], [DuongDanAnh], [MaQuyenTruyCap]) VALUES (N'khaivu@gmail.com', N'admin', N'Vũ Quang Khải', NULL, 1)
 
 END");
                 db.Database.ExecuteSqlCommand("EXECUTE PROC_CreateDefaultRecord");

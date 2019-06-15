@@ -193,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\MyClass.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,10 +210,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DbMusicWebsite.mdf" />
-    <Content Include="App_Data\DbMusicWebsite_log.ldf">
-      <DependentUpon>DbMusicWebsite.mdf</DependentUpon>
-    </Content>
     <Content Include="Assets\css\sb-admin.css" />
     <Content Include="Assets\css\sb-admin.min.css" />
     <Content Include="Assets\files\bensound-betterdays.mp3" />
@@ -248,13 +245,18 @@
     <Content Include="Assets\images\5.jpg" />
     <Content Include="Assets\images\5c7da043c5ee982b11185f2eaf0c675f.jpg" />
     <Content Include="Assets\images\6.jpg" />
+    <Content Include="Assets\images\Adam-Lambert152x152.jpg" />
+    <Content Include="Assets\images\Adam-Lambert300x300.jpg" />
     <Content Include="Assets\images\avatar152x152.jpg" />
     <Content Include="Assets\images\avatar300x300.jpg" />
     <Content Include="Assets\images\blue-music.jpg" />
     <Content Include="Assets\images\country-music.jpg" />
     <Content Include="Assets\images\edm-music.jpg" />
+    <Content Include="Assets\images\elle-fanning_640x640y.jpg" />
     <Content Include="Assets\images\hiphop-music.jpg" />
     <Content Include="Assets\images\jazz-music.png" />
+    <Content Include="Assets\images\Music_player_logo.png" />
+    <Content Include="Assets\images\Music_player_logo152x152.png" />
     <Content Include="Assets\images\R-BSoul-music.jpg" />
     <Content Include="Assets\images\rock-music.jpg" />
     <Content Include="Assets\images\6a884d62ly1ftctis49gwj21hc0u07wi.jpg" />
@@ -1941,7 +1943,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Assets\fonts\FuturaLT-Bold.ttf" />
@@ -2134,11 +2138,6 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Admin\Chart.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Admin\Delete_BANNHAC.cshtml" />
-    <Content Include="Views\Admin\Delete_DANHSACHNHAC.cshtml" />
-    <Content Include="Views\Admin\Delete_NGUOIDUNG.cshtml" />
-    <Content Include="Views\Admin\Delete_QUYENTRUYCAP.cshtml" />
-    <Content Include="Views\Admin\Delete_THELOAI.cshtml" />
     <Content Include="Views\Admin\EditMusicLibrary.cshtml" />
     <Content Include="Views\Admin\Edit_BANNHAC.cshtml" />
     <Content Include="Views\Admin\Edit_DANHSACHNHAC.cshtml" />
@@ -2165,6 +2164,8 @@
     <Content Include="Views\User\Test.cshtml" />
     <Content Include="Views\User\_Test.cshtml" />
     <Content Include="Views\User\_UserViewer.cshtml" />
+    <Content Include="Views\Admin\Library_TACGIA.cshtml" />
+    <Content Include="Views\Admin\Edit_TACGIA.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

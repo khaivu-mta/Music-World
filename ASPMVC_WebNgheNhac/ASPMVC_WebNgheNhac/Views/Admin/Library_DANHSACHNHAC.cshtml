@@ -11,13 +11,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MaDanhSach)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.TenDanhSach)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.MaTacGia)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.NgayTao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LuongTruyCap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanTrucTuyen)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DuongDanAnh)
@@ -30,13 +36,19 @@
         <tfoot>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MaDanhSach)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.TenDanhSach)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.MaTacGia)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.NgayTao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LuongTruyCap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanTrucTuyen)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DuongDanAnh)
@@ -51,13 +63,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaDanhSach)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.TenDanhSach)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.MaTacGia)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.NgayTao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuongTruyCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuongDanTrucTuyen)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DuongDanAnh)
@@ -68,6 +86,5 @@
                 </td>
             </tr>
         }
-
     </table>
 </div>

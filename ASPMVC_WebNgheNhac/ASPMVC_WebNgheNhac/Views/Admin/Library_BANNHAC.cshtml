@@ -3,6 +3,9 @@
 @{
     Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
 }
+@{ 
+    ASPMVC_WebNgheNhac.Models.DbMusicWebsite db = new ASPMVC_WebNgheNhac.Models.DbMusicWebsite();
+}
 <div class="table-responsive">
     @Html.ActionLink("Thêm mới", "Edit", new { id = "BANNHAC" })
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -12,16 +15,10 @@
                     @Html.DisplayNameFor(model => model.TenBanNhac)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TacGia)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.KichThuoc)
+                    @Html.DisplayNameFor(model => model.TACGIA.HoTen)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DoDai)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TanSo)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DinhDang)
@@ -34,6 +31,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DuongDanAnh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuongDanTrucTuyen)
                 </th>
                 <th>
                     Hành động
@@ -46,16 +46,10 @@
                     @Html.DisplayNameFor(model => model.TenBanNhac)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TacGia)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.KichThuoc)
+                    @Html.DisplayNameFor(model => model.TACGIA.HoTen)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DoDai)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TanSo)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DinhDang)
@@ -70,27 +64,25 @@
                     @Html.DisplayNameFor(model => model.DuongDanAnh)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.DuongDanTrucTuyen)
+                </th>
+                <th>
                     Hành động
                 </th>
             </tr>
         </tfoot>
         @foreach (var item in Model)
         {
+            string hotentacgia = db.TACGIAs.Find(item.MaTacGia).HoTen;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenBanNhac)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TacGia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.KichThuoc)
+                    @Html.DisplayFor(modelItem => hotentacgia)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DoDai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TanSo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DinhDang)
@@ -104,6 +96,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DuongDanAnh)
                 </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.DuongDanTrucTuyen)
+                </th>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = "BANNHAC", _Value = item.MaBanNhac }) |
                     @Html.ActionLink("Delete", "Delete", new { id = "BANNHAC", _Value = item.MaBanNhac })

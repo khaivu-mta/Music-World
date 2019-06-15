@@ -11,41 +11,18 @@ namespace ASPMVC_WebNgheNhac.Controllers
 {
     public class AdminController : Controller
     {
+        #region MY PARAMETER
+        DbMusicWebsite db = new DbMusicWebsite();
+
+        #endregion
         // GET: Admin
-        public int? CheckLogin(string _email, string _password)
-        {
-            if (string.IsNullOrWhiteSpace(_email) || string.IsNullOrWhiteSpace(_password))
-            {
-                return -1;
-            }
-            DbMusicWebsite db = new DbMusicWebsite();
-            var _query = from m in db.NGUOIDUNGs where m.Email.Equals(_email) && m.MatKhau.Equals(_password) select m.MaQuyenTruyCap;
-            if (!_query.Any())
-            {
-                return -1;
-            }
-            else
-                return _query.First();
-        }
 
         private int? CheckLogin()
         {
-            if (Session["TypeUser"] != null)
+            if (Session["LoginInfo"] != null)
             {
-                if (Session["LoginInfo"] != null)
-                {
-                    try
-                    {
-                        Models.NGUOIDUNG val = Session["LoginInfo"] as Models.NGUOIDUNG;
-                        int? type = Convert.ToInt32(Session["TypeUser"]);
-                        if (CheckLogin(val.Email, val.MatKhau) == type)
-                            return type;
-                    }
-                    catch
-                    {
-                        return -1;
-                    }
-                }
+                Models.NGUOIDUNG val = Session["LoginInfo"] as Models.NGUOIDUNG;
+                return Code.MyClass.CheckLogin(val.Email, val.MatKhau);
             }
             return -1;
         }
@@ -62,8 +39,6 @@ namespace ASPMVC_WebNgheNhac.Controllers
                 default:
                     return RedirectToAction("Login", "User");
             }
-
-            Models.DbMusicWebsite db = new Models.DbMusicWebsite();
             switch (id)
             {
                 case "BANNHAC":
@@ -80,6 +55,9 @@ namespace ASPMVC_WebNgheNhac.Controllers
 
                 case "THELOAI":
                     return View("Library_THELOAI", db.THELOAIs);
+
+                case "TACGIA":
+                    return View("Library_TACGIA", db.TACGIAs);
 
                 default:
                     break;
@@ -102,7 +80,6 @@ namespace ASPMVC_WebNgheNhac.Controllers
             }
 
             // nếu không, truyền dữ liệu cần chỉnh sửa đến View()
-            Models.DbMusicWebsite db = new Models.DbMusicWebsite();
             switch (id)
             {
                 case "BANNHAC":
@@ -139,7 +116,14 @@ namespace ASPMVC_WebNgheNhac.Controllers
                     
                     val5 = db.THELOAIs.Find(val5.MaTheLoai);
                     return View("Edit_THELOAI", val5);
-                    
+
+                case "TACGIA":
+                    Models.TACGIA val6 = new Models.TACGIA();
+                    val6.MaTacGia= Convert.ToInt32(_Value);
+
+                    val6 = db.TACGIAs.Find(val6.MaTacGia);
+                    return View("Edit_TACGIA", val6);
+
                 default:
                     break;
             }
@@ -149,7 +133,7 @@ namespace ASPMVC_WebNgheNhac.Controllers
         [HttpPost]
         public ActionResult Edit(Models.BANNHAC _BANNHAC = null, Models.DANHSACHNHAC _DANHSACHNHAC = null,
             Models.NGUOIDUNG _NGUOIDUNG = null, Models.QUYENTRUYCAP _QUYENTRUYCAP = null, 
-            Models.THELOAI _THELOAI = null)
+            Models.THELOAI _THELOAI = null, Models.TACGIA _TACGIA = null)
         {
             // kiểm tra đăng nhập
             switch (CheckLogin())
@@ -166,7 +150,6 @@ namespace ASPMVC_WebNgheNhac.Controllers
                     return RedirectToAction("Login", "User");
             }
             
-            Models.DbMusicWebsite db = new Models.DbMusicWebsite();
             switch (Session["TableEditing"].ToString())
             {
                 case "BANNHAC":
@@ -205,6 +188,17 @@ namespace ASPMVC_WebNgheNhac.Controllers
                     db.SaveChanges();
 
                     return RedirectToAction("Library", "Admin", new { id = "THELOAI" });
+
+                case "TACGIA":
+                    Models.TACGIA t6 = _TACGIA as Models.TACGIA;
+                    if (t6.HienThiTrenTrangChu)
+                    {
+                        db.Database.ExecuteSqlCommand("UPDATE TACGIA SET HienThiTrenTrangChu = 'FALSE' WHERE MaTacGia != " + t6.MaTacGia);
+                    }
+                    db.TACGIAs.AddOrUpdate<Models.TACGIA>(t6);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Library", "Admin", new { id = "TACGIA" });
 
                 default:
                     break;
@@ -255,7 +249,6 @@ namespace ASPMVC_WebNgheNhac.Controllers
                 default:
                     return RedirectToAction("Login", "User");
             }
-            Models.DbMusicWebsite db = new Models.DbMusicWebsite();
             switch (id)
             {
                 case "BANNHAC":
@@ -289,6 +282,14 @@ namespace ASPMVC_WebNgheNhac.Controllers
                     db.Database.ExecuteSqlCommand("DELETE THELOAI WHERE MaTheLoai = " + _Value);
                     db.SaveChanges();
                     return RedirectToAction("Library", "Admin", new { id = "THELOAI" });
+
+                case "TACGIA":
+                    db.Database.ExecuteSqlCommand("DELETE TACGIA_BANNHAC WHERE MaTacGia = " + _Value);
+                    db.Database.ExecuteSqlCommand("UPDATE BANNHAC SET MaTacGia = null WHERE MaTacGia = " + _Value);
+                    db.Database.ExecuteSqlCommand("UPDATE DANHSACHNHAC SET MaTacGia = null WHERE MaTacGia = " + _Value);
+                    db.Database.ExecuteSqlCommand("DELETE TACGIA WHERE MaTacGia = " + _Value);
+                    db.SaveChanges();
+                    return RedirectToAction("Library", "Admin", new { id = "TACGIA" });
 
                 default:
                     break;

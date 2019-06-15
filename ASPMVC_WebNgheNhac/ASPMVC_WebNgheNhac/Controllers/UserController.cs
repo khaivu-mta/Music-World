@@ -16,35 +16,13 @@ namespace ASPMVC_WebNgheNhac.Controllers
         #endregion
 
         #region MY FUNCTION
-        /// <summary>
-        /// 
-        /// Kiểm tra đăng nhập
-        /// 
-        /// </summary>
-        /// <param name="_email"></param>
-        /// <param name="_password"></param>
-        /// <returns></returns>
-        public int? CheckLogin(string _email, string _password)
-        {
-            if (string.IsNullOrWhiteSpace(_email) | string.IsNullOrWhiteSpace(_password))
-            {
-                return -1;
-            }
-            var _query = from m in db.NGUOIDUNGs where m.Email.Equals(_email) && m.MatKhau.Equals(_password) select m.MaQuyenTruyCap;
-            if (!_query.Any())
-            {
-                return -1;
-            }
-            else
-                return _query.First();
-        }
+        
         /// <summary>
         /// Các giá trị ban đầu cho các biến toàn cục
         /// </summary>
         private void LogoutState()
         {
             Session["LoginInfo"] = null;
-            Session["TypeUser"] = -1;
             Session["TableEditing"] = null;
         }
         #endregion
@@ -72,16 +50,14 @@ namespace ASPMVC_WebNgheNhac.Controllers
                 string password = info.MatKhau;
                 int? itam = -1;
 
-                itam = CheckLogin(email, password);
+                itam = Code.MyClass.CheckLogin(email, password);
                 switch (itam)
                 {
                     case 1: // admin
                         Session["LoginInfo"] = info;
-                        Session["TypeUser"] = itam;
                         return this.RedirectToAction("Index", "Admin");
                     case 0:// normal user
                         Session["LoginInfo"] = info;
-                        Session["TypeUser"] = itam;
                         return this.RedirectToAction("Index", "Admin");
                     default:
                         break;
