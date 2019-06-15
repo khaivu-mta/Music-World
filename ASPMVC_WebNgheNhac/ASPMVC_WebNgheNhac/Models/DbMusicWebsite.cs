@@ -16,6 +16,7 @@ namespace ASPMVC_WebNgheNhac.Models
         public virtual DbSet<DANHSACHNHAC> DANHSACHNHACs { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNGs { get; set; }
         public virtual DbSet<QUYENTRUYCAP> QUYENTRUYCAPs { get; set; }
+        public virtual DbSet<TACGIA> TACGIAs { get; set; }
         public virtual DbSet<THELOAI> THELOAIs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,6 +27,11 @@ namespace ASPMVC_WebNgheNhac.Models
                 .Map(m => m.ToTable("DANHSACHNHAC_BANNHAC").MapLeftKey("MaBanNhac").MapRightKey("MaDanhSach"));
 
             modelBuilder.Entity<BANNHAC>()
+                .HasMany(e => e.TACGIAs)
+                .WithMany(e => e.BANNHACs1)
+                .Map(m => m.ToTable("TACGIA_BANNHAC").MapLeftKey("MaBanNhac").MapRightKey("MaTacGia"));
+
+            modelBuilder.Entity<BANNHAC>()
                 .HasMany(e => e.THELOAIs)
                 .WithMany(e => e.BANNHACs)
                 .Map(m => m.ToTable("THELOAI_BANNHAC").MapLeftKey("MaBanNhac").MapRightKey("MaTheLoai"));
@@ -34,6 +40,11 @@ namespace ASPMVC_WebNgheNhac.Models
                 .HasMany(e => e.DANHSACHNHACs)
                 .WithMany(e => e.NGUOIDUNGs)
                 .Map(m => m.ToTable("NGUOIDUNG_DANHSACHNHAC").MapLeftKey("Email").MapRightKey("MaDanhSach"));
+
+            modelBuilder.Entity<TACGIA>()
+                .HasMany(e => e.BANNHACs)
+                .WithOptional(e => e.TACGIA)
+                .HasForeignKey(e => e.MaTacGia);
         }
     }
 }

@@ -51,23 +51,22 @@
         <!-- Home Slider -->
         <div class="owl-carousel owl-theme home_slider">
             @{ 
-                int numberSlide = Model.Count();
+                //int numberSlide = Model.Count();
             }
             <!-- Slide -->
             @foreach (var item in Model)
             {
-                string strstr = Url.Content(item.DuongDanAnh);
                 <div class="owl-item">
-                    <div class="background_image" style="background-image:url(@strstr)">
+                    <div class="background_image" style="background-image:url(@Url.Content(item.DuongDanAnh))">
 
                     </div>
                     <center><h2>Được nghe nhiều nhất!</h2></center>
                     <div class="home_container">
                         <div class="home_container_inner d-flex flex-column align-items-center justify-content-center">
                             <div class="home_content text-center">
-                                <div class="home_subtitle">Album mới phát hành</div>
+                                <div class="home_subtitle">Lượt nghe: @item.LuongTruyCap</div>
                                 <div class="home_title"><h1>@item.TenDanhSach</h1></div>
-                                <div class="home_link"><a href="#">Listen</a></div>
+                                <div class="home_link"><a href="@item.DuongDanTrucTuyen">_Listen_</a></div>
                             </div>
                         </div>
                     </div>

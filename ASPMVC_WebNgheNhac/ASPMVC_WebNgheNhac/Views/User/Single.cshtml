@@ -1,12 +1,11 @@
-﻿
-@model List<ASPMVC_WebNgheNhac.Models.BANNHAC>
+﻿@model ASPMVC_WebNgheNhac.Models.TACGIA
 
 @{
     Layout = "~/Views/User/_UserViewer.cshtml";
 }
 
 @{
-int icount = Model.Count();
+    int icount = 1;
 }
 
 @section title{
@@ -74,14 +73,25 @@ int icount = Model.Count();
             <div class="col-lg-5">
                 <div class="single_info">
                     <div class="single_image">
-                        <img src="/Assets/images/6a884d62ly1ftctis49gwj21hc0u07wi.jpg" alt="">
+                        <img src="@Model.DuongDanAnh" alt="">
                     </div>
                     <div class="single_info_list">
                         <ul>
-                            <li><span>Release date: </span>25 Tháng 08 Năm 2013</li>
-                            <li><span>Tags: </span>Sky</li>
-                            <li><span>Producers: </span>Tùng - Núi</li>
-                            <li><span>No of songs: </span>40</li>
+                            @{ 
+                                string ngaybatdau = null;
+                                if (Model.NgayBatDau == null)
+                                {
+                                    ngaybatdau = "Chưa rõ";
+                                }
+                                else
+                                {
+                                    ngaybatdau = ((DateTime)Model.NgayBatDau).ToShortDateString();
+                                }
+                            }
+                            <li><span>Release date: </span>@ngaybatdau</li>
+                            <li><span>Tags: </span>@Model.HoTen</li>
+                            <li><span>Producers: </span>@Model.HoTen</li>
+                            <li><span>No of songs: </span>@Model.SoLuongBaiHat</li>
                         </ul>
                     </div>
                     <div class="logo_list d-flex flex-row align-items-center justify-content-start flex-wrap">
@@ -96,9 +106,7 @@ int icount = Model.Count();
             <div class="col-lg-7 single_content_col">
                 <div class="single_content">
                     <div class="single_text">
-                        <p>Ngô Tất Tố sinh năm 1894 ở làng Lộc Hà, tổng Hội Phụ, phủ Từ Sơn, Bắc Ninh (nay là thôn Lộc Hà, xã Mai Lâm, huyện Đông Anh, Hà Nội). Ông là con thứ hai, nhưng là trưởng nam trong một gia đình có bảy anh chị em, ba trai, bốn gái. Lúc còn nhỏ Ngô Tất Tố được thụ hưởng một nền giáo dục Nho học. Từ năm 1898, Ngô Tất Tố được ông nội dạy vỡ lòng chữ Hán ở quê, sau đó ông theo học ở nhiều làng quê trong vùng. Năm 1912, Ngô Tất Tố học tư chữ Pháp một thời gian ngắn và bắt đầu tham dự các kỳ thi truyền thống lúc bấy giờ vẫn còn được triều đình nhà Nguyễn tổ chức.</p>
-                        <p>Năm 1926, Ngô Tất Tố ra Hà Nội làm báo. Ông viết cho tờ An Nam tạp chí. Nhưng vì thiếu tiền, tờ báo này phải tự đình bản, Ngô Tất Tố cùng với Tản Đà đã vào Sài Gòn. Mặc dù không thật sự thành công trong cuộc thử sức ở Nam Kì, nhưng tại đây, Ngô Tất Tố đã có cơ hội tiếp cận với tri thức và văn hóa thế giới ở vùng đất khi đó là thuộc địa chính thức của Pháp cũng như theo đuổi nghề báo để chuẩn bị sau này trở thành một nhà báo chuyên nghiệp.</p>
-                        <p>Sau gần ba năm ở Sài Gòn, Ngô Tất Tố trở ra Hà Nội. Ông tiếp tục sinh sống bằng cách viết bài cho các báo: An Nam tạp chí, Thần chung, Phổ thông, Đông Dương, Hải Phòng tuần báo, Thực nghiệp, Con ong, Việt nữ, Tiểu thuyết thứ ba, Tương lai, Công dân, Đông Pháp thời báo, Thời vụ, Hà Nội tân văn,Tuần lễ... với 29 bút danh khác nhau như: Thục Điểu, Lộc Hà, Lộc Đình, Thôn Dân, Phó Chi, Tuệ Nhơn, Thuyết Hải, Xuân Trào, Hy Cừ... Trong thời gian những năm 1936-1939, Ngô Tất Tố viết nhiều tác phẩm chỉ trích quan lại tham nhũng phong kiến.</p>
+                        <p>@Model.GioiThieu</p>
                     </div>
                     <div class="single_players">
 

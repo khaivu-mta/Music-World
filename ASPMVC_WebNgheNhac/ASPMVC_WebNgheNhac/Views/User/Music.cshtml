@@ -79,6 +79,7 @@
             @foreach (var item in Model)
             {
                 string tamm = idstr + idem;
+                string tentacgia = new ASPMVC_WebNgheNhac.Models.DbMusicWebsite().TACGIAs.Find(item.MaTacGia).HoTen;
                 <div class="col-xl-4 col-md-6">
                     <div class="disc">
                         <a href="#">
@@ -86,7 +87,7 @@
                             <div class="disc_container">
                                 <div>
                                     <div class="@tamm">
-                                        <div class="disc_title">@item.TacGia</div>
+                                        <div class="disc_title">@tentacgia</div>
                                         <div class="disc_subtitle">@item.TenBanNhac</div>
                                     </div>
                                 </div>

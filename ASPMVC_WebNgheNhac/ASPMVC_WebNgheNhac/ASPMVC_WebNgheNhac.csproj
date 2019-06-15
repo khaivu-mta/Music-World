@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -201,11 +203,16 @@
     <Compile Include="Models\DbMusicWebsite.cs" />
     <Compile Include="Models\NGUOIDUNG.cs" />
     <Compile Include="Models\QUYENTRUYCAP.cs" />
+    <Compile Include="Models\TACGIA.cs" />
     <Compile Include="Models\THELOAI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DbMusicWebsite.mdf" />
+    <Content Include="App_Data\DbMusicWebsite_log.ldf">
+      <DependentUpon>DbMusicWebsite.mdf</DependentUpon>
+    </Content>
     <Content Include="Assets\css\sb-admin.css" />
     <Content Include="Assets\css\sb-admin.min.css" />
     <Content Include="Assets\files\bensound-betterdays.mp3" />
@@ -227,6 +234,11 @@
     <Content Include="Assets\files\Victory - Two Steps From Hell.mp3" />
     <Content Include="Assets\images\1.jpg" />
     <Content Include="Assets\images\10.jpg" />
+    <Content Include="Assets\images\1461816519441.jpg" />
+    <Content Include="Assets\images\1489737693366.jpg" />
+    <Content Include="Assets\images\1500605449098.jpg" />
+    <Content Include="Assets\images\1527581834391.jpg" />
+    <Content Include="Assets\images\1535121377317.jpg" />
     <Content Include="Assets\images\1acHpbp.jpg" />
     <Content Include="Assets\images\2.jpg" />
     <Content Include="Assets\images\3.jpg" />
@@ -234,7 +246,17 @@
     <Content Include="Assets\images\36632325_2112581568812386_3206334493967253504_o.jpg" />
     <Content Include="Assets\images\4.jpg" />
     <Content Include="Assets\images\5.jpg" />
+    <Content Include="Assets\images\5c7da043c5ee982b11185f2eaf0c675f.jpg" />
     <Content Include="Assets\images\6.jpg" />
+    <Content Include="Assets\images\avatar152x152.jpg" />
+    <Content Include="Assets\images\avatar300x300.jpg" />
+    <Content Include="Assets\images\blue-music.jpg" />
+    <Content Include="Assets\images\country-music.jpg" />
+    <Content Include="Assets\images\edm-music.jpg" />
+    <Content Include="Assets\images\hiphop-music.jpg" />
+    <Content Include="Assets\images\jazz-music.png" />
+    <Content Include="Assets\images\R-BSoul-music.jpg" />
+    <Content Include="Assets\images\rock-music.jpg" />
     <Content Include="Assets\images\6a884d62ly1ftctis49gwj21hc0u07wi.jpg" />
     <Content Include="Assets\images\7.jpg" />
     <Content Include="Assets\images\8.jpg" />
@@ -243,6 +265,7 @@
     <Content Include="Assets\images\anime-girl-school-uniform-back-view-clouds-buildings-sunlight.jpg" />
     <Content Include="Assets\images\artist.png" />
     <Content Include="Assets\images\artist_2.jpg" />
+    <Content Include="Assets\images\avatar_default.jpg" />
     <Content Include="Assets\images\blog.jpg" />
     <Content Include="Assets\images\blog_1.jpg" />
     <Content Include="Assets\images\blog_2.jpg" />
@@ -276,6 +299,7 @@
     <Content Include="Assets\images\mute_1.png" />
     <Content Include="Assets\images\Pale-Blue-Dot.jpg" />
     <Content Include="Assets\images\photo-1533770699395-5761e5d08106.jpg" />
+    <Content Include="Assets\images\POP-Music-l.jpg" />
     <Content Include="Assets\images\shows.jpg" />
     <Content Include="Assets\images\sig.png" />
     <Content Include="Assets\images\single.jpg" />
@@ -1917,9 +1941,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Assets\fonts\FuturaLT-Bold.ttf" />

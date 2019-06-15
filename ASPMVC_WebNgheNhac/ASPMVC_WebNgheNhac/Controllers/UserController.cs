@@ -17,11 +17,16 @@ namespace ASPMVC_WebNgheNhac.Controllers
 
         #region MY FUNCTION
         /// <summary>
-        /// Các giá trị ban đầu cho các biến toàn cục
+        /// 
+        /// Kiểm tra đăng nhập
+        /// 
         /// </summary>
+        /// <param name="_email"></param>
+        /// <param name="_password"></param>
+        /// <returns></returns>
         public int? CheckLogin(string _email, string _password)
         {
-            if (string.IsNullOrWhiteSpace(_email) || string.IsNullOrWhiteSpace(_password))
+            if (string.IsNullOrWhiteSpace(_email) | string.IsNullOrWhiteSpace(_password))
             {
                 return -1;
             }
@@ -33,7 +38,9 @@ namespace ASPMVC_WebNgheNhac.Controllers
             else
                 return _query.First();
         }
-
+        /// <summary>
+        /// Các giá trị ban đầu cho các biến toàn cục
+        /// </summary>
         private void LogoutState()
         {
             Session["LoginInfo"] = null;
@@ -42,11 +49,10 @@ namespace ASPMVC_WebNgheNhac.Controllers
         }
         #endregion
 
-
         [HttpGet]
         public ActionResult Index()
         {
-            return View(db.Database.SqlQuery<DANHSACHNHAC>("SELECT TOP 6 * FROM DANHSACHNHAC").ToList());
+            return View(db.Database.SqlQuery<DANHSACHNHAC>("SELECT TOP 6 * FROM DANHSACHNHAC ORDER BY LuongTruyCap DESC").ToList());
         }
 
         [HttpGet]
@@ -67,19 +73,18 @@ namespace ASPMVC_WebNgheNhac.Controllers
                 int? itam = -1;
 
                 itam = CheckLogin(email, password);
-                if (itam == 1) // admin
+                switch (itam)
                 {
-                    Session["LoginInfo"] = info;
-                    Session["TypeUser"] = itam;
-                    // ViewBag.Message = "Chào mừng admin!";
-                    return this.RedirectToAction("Index", "Admin");
-                }
-                else if (itam == 0) // normal user
-                {
-                    Session["LoginInfo"] = info;
-                    Session["TypeUser"] = itam;
-                    // ViewBag.Message = "Chào mừng bạn!";
-                    return this.RedirectToAction("Index", "Admin");
+                    case 1: // admin
+                        Session["LoginInfo"] = info;
+                        Session["TypeUser"] = itam;
+                        return this.RedirectToAction("Index", "Admin");
+                    case 0:// normal user
+                        Session["LoginInfo"] = info;
+                        Session["TypeUser"] = itam;
+                        return this.RedirectToAction("Index", "Admin");
+                    default:
+                        break;
                 }
             }
             ViewBag.Message = @"Sai tên đăng nhập hoặc mật khẩu";
@@ -137,10 +142,16 @@ namespace ASPMVC_WebNgheNhac.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// Các thể loại nhạc
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult About()
         {
-            return View(db.Database.SqlQuery<Models.DANHSACHNHAC>("SELECT TOP 6 * FROM DANHSACHNHAC"));
+            return View(db.Database.SqlQuery<Models.THELOAI>("SELECT TOP 6 * FROM THELOAI"));
         }
         [HttpGet]
         public ActionResult Music()
@@ -150,7 +161,12 @@ namespace ASPMVC_WebNgheNhac.Controllers
         [HttpGet]
         public ActionResult Single()
         {
-            return View(db.Database.SqlQuery<Models.BANNHAC>("SELECT TOP 1 * FROM BANNHAC").ToList());
+            IEnumerable<TACGIA> l = db.Database.SqlQuery<Models.TACGIA>("SELECT TOP 1 * FROM TACGIA WHERE HienThiTrenTrangChu = 'True'");
+            if (l.Count() <= 0)
+            {
+                return View(db.Database.SqlQuery<Models.TACGIA>("SELECT TOP 1 * FROM TACGIA").SingleOrDefault());
+            }
+            return View(l.First());
         }
 
         [HttpGet]
