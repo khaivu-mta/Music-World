@@ -135,6 +135,23 @@
                 </div>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Tải lên</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">Hành động</h6>
+
+                    @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <label for="file">Upload Image:</label>
+                        <a class="dropdown-item"><input type="file" name="file" id="file" style="width: 100%;" /></a>
+                        <a class="dropdown-item"><input type="submit" value="Tải lên" class="submit" /></a>
+                    }
+                </div>
+            </li>
+
             @*<li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Chart", "Admin")">
                     <i class="fas fa-fw fa-chart-area"></i>

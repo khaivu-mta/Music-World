@@ -55,10 +55,10 @@ namespace ASPMVC_WebNgheNhac.Controllers
                 {
                     case 1: // admin
                         Session["LoginInfo"] = info;
-                        return this.RedirectToAction("Index", "Admin");
+                        return this.RedirectToAction("Index", "Admin", new { message = "Chào mừng admin" });
                     case 0:// normal user
                         Session["LoginInfo"] = info;
-                        return this.RedirectToAction("Index", "Admin");
+                        return this.RedirectToAction("Index", "Admin", new { message = "Chào mừng bạn" });
                     default:
                         break;
                 }

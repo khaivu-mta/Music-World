@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -235,8 +236,12 @@ namespace ASPMVC_WebNgheNhac.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
+            if (!string.IsNullOrWhiteSpace(message))
+            {
+                ViewBag.Message = message;
+            }
             IndexStruct l = new IndexStruct(6);
             l.lInt[0] = db.BANNHACs.Count();
             l.lInt[1] = db.DANHSACHNHACs.Count();
@@ -355,6 +360,34 @@ namespace ASPMVC_WebNgheNhac.Controllers
             }
             // else
             return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+            // kiểm tra đăng nhập
+            switch (CheckLogin())
+            {
+                case 1:
+                case 0:
+                    break;
+                default:
+                    return RedirectToAction("Login", "User");
+            }
+
+            if (file != null)
+            {
+                var path = Path.Combine(Server.MapPath("~/Assets/images") , file.FileName);
+
+                // file is uploaded
+                file.SaveAs(path);
+                ViewBag.Message = "Upload file thành công!";
+            }
+            else
+            {
+                ViewBag.Message = "Không thể upload file!";
+            }
+            return RedirectToAction("Index", "Admin", new { message = ViewBag.Message });
         }
     }
 }
