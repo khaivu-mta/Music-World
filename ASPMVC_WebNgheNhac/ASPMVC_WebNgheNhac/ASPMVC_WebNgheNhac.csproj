@@ -2138,7 +2138,6 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Admin\Chart.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Admin\EditMusicLibrary.cshtml" />
     <Content Include="Views\Admin\Edit_BANNHAC.cshtml" />
     <Content Include="Views\Admin\Edit_DANHSACHNHAC.cshtml" />
     <Content Include="Views\Admin\Edit_NGUOIDUNG.cshtml" />

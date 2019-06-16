@@ -10,19 +10,21 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Chỉnh sửa danh sách nhạc</h4>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MaDanhSach, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DisplayFor(Model => Model.MaDanhSach)
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaDanhSach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(Model => Model.MaDanhSach)
+            </div>
         </div>
-    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.TenDanhSach, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDanhSach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TenDanhSach, new { htmlAttributes = new { @class = "form-control" , @size = "200" } })
                 @Html.ValidationMessageFor(model => model.TenDanhSach, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NgayTao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayTao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgayTao, new { htmlAttributes = new { @class = "form-control" , @size = "200" } })
                 @Html.ValidationMessageFor(model => model.NgayTao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DuongDanAnh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DuongDanAnh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DuongDanAnh, new { htmlAttributes = new { @class = "form-control" , @size = "200" } })
                 @Html.ValidationMessageFor(model => model.DuongDanAnh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,4 +50,5 @@
                 <input type="submit" value="Chỉnh sửa" class="btn btn-default" />
             </div>
         </div>
+    </div>
 }

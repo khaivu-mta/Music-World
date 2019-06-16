@@ -14,15 +14,15 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>QUYENTRUYCAP</h4>
-        <hr />
+        <h4>Chỉnh sửa quyền truy cập</h4>
+        <br>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaQuyenTruyCap)
 
         <div class="form-group">
             @Html.LabelFor(model => model.TenQuyenTruyCap, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenQuyenTruyCap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TenQuyenTruyCap, new { htmlAttributes = new { @class = "form-control" , @size = "200" } })
                 @Html.ValidationMessageFor(model => model.TenQuyenTruyCap, "", new { @class = "text-danger" })
             </div>
         </div>

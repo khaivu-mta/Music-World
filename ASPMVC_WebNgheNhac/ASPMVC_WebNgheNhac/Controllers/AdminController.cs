@@ -11,12 +11,14 @@ namespace ASPMVC_WebNgheNhac.Controllers
 {
     public class AdminController : Controller
     {
+        // GET: Admin
+
         #region MY PARAMETER
         DbMusicWebsite db = new DbMusicWebsite();
 
         #endregion
-        // GET: Admin
 
+        #region MY FUNCTION
         private int? CheckLogin()
         {
             if (Session["LoginInfo"] != null)
@@ -26,6 +28,32 @@ namespace ASPMVC_WebNgheNhac.Controllers
             }
             return -1;
         }
+        #endregion
+        #region MY STRUCT - CLASS
+        public class IndexStruct
+        {
+            public int[] lInt { get; set; }
+            public string[] lString { get; set; }
+            public string[] lAction { get; set; }
+            public string[] lController { get; set; }
+            public object[] lParameter { get; set; }
+            public int Count
+            {
+                get
+                {
+                    return lInt.Count();
+                }
+            }
+            public IndexStruct(int number)
+            {
+                lInt = new int[number];
+                lString = new string[number];
+                lAction = new string[number];
+                lController = new string[number];
+                lParameter = new object[number];
+            }
+        }
+        #endregion
 
         [HttpGet]
         public ActionResult Library(string id) // id = table name
@@ -209,13 +237,44 @@ namespace ASPMVC_WebNgheNhac.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
+            IndexStruct l = new IndexStruct(6);
+            l.lInt[0] = db.BANNHACs.Count();
+            l.lInt[1] = db.DANHSACHNHACs.Count();
+            l.lInt[2] = db.NGUOIDUNGs.Count();
+            l.lInt[3] = db.QUYENTRUYCAPs.Count();
+            l.lInt[4] = db.TACGIAs.Count();
+            l.lInt[5] = db.THELOAIs.Count();
+
+            l.lString[0] = l.lInt[0] + " bài hát";
+            l.lString[1] = l.lInt[1] + " albums";
+            l.lString[2] = l.lInt[2] + " người dùng";
+            l.lString[3] = l.lInt[3] + " quyền truy cập";
+            l.lString[4] = l.lInt[4] + " ca sỹ";
+            l.lString[5] = l.lInt[5] + " thể loại";
+
+            l.lAction[0] =
+                l.lAction[1] =
+                l.lAction[2] =
+                l.lAction[3] =
+                l.lAction[4] =
+                l.lAction[5] = "Library";
+            l.lController[0] =
+                l.lController[1] =
+                l.lController[2] =
+                l.lController[3] =
+                l.lController[4] =
+                l.lController[5] = "Admin";
+            l.lParameter[0] = "BANNHAC";
+            l.lParameter[1] = "DANHSACHNHAC";
+            l.lParameter[2] = "NGUOIDUNG";
+            l.lParameter[3] = "QUYENTRUYCAP";
+            l.lParameter[4] = "TACGIA";
+            l.lParameter[5] = "THELOAI";
             switch (CheckLogin())
             {
                 case 1:
-                    return View();
                 case 0:
-                    return View();
+                    return View(l);
                 default:
                     break;
             }
