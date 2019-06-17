@@ -375,9 +375,39 @@ namespace ASPMVC_WebNgheNhac.Controllers
                     return RedirectToAction("Login", "User");
             }
 
-            if (file != null)
+            if (file != null && file.ContentLength > 0)
             {
-                var path = Path.Combine(Server.MapPath("~/Assets/images") , file.FileName);
+                string strExtention = Path.GetExtension(file.FileName).ToLower();
+                string path = null;
+                switch (strExtention)
+                {
+                    case ".jpg":
+                    case ".png":
+                    case ".gif":
+                    case ".jpeg":
+                        path = Path.Combine(Server.MapPath("~/Assets/images"), file.FileName);
+
+                        break;
+                    case ".mp3":
+                    case ".flac":
+                    case ".acc":
+                    case ".ogg":
+                    case ".mpeg":
+                        path = Path.Combine(Server.MapPath("~/Assets/files"), file.FileName);
+                        BANNHAC val = new BANNHAC();
+                        val.TenBanNhac = Path.GetFileName(file.FileName);
+                        val.KichThuoc = file.ContentLength;
+                        val.DinhDang = Path.GetExtension(file.FileName);
+                        val.DuongDanBanNhac = @"/Assets/files/" + file.FileName;
+
+                        db.BANNHACs.Add(val);
+                        db.SaveChanges();
+                        break;
+                    default:
+                        ViewBag.Message = "Tập tin không được hỗ trợ!";
+                        return RedirectToAction("Index", "Admin", new { message = ViewBag.Message });
+                        //break;
+                }
 
                 // file is uploaded
                 file.SaveAs(path);

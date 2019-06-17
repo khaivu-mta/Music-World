@@ -1,6 +1,8 @@
 ﻿using ASPMVC_WebNgheNhac.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,10 +15,40 @@ namespace ASPMVC_WebNgheNhac.Controllers
         // GET: User
         #region MY PARAMETER
         private DbMusicWebsite db = new DbMusicWebsite();
+        private List<int> lmusicListen = new List<int>();
+        private static List<int> lmusicAll= new List<int>();
+        #endregion
+
+        #region MY STRUCT - CLASS
+        public struct MySimpleStructBanNhac
+        {
+            [Key]
+            [DisplayName("Mã bản nhạc")]
+            public int MaBanNhac { get; set; }
+
+            [StringLength(100)]
+            [DisplayName("Tên bản nhạc")]
+            public string TenBanNhac { get; set; }
+
+            [DisplayName("Tên tác giả")]
+            public string HoTen{ get; set; }
+
+            [StringLength(200)]
+            [DisplayName("Đường dẫn bản nhạc")]
+            public string DuongDanBanNhac { get; set; }
+
+            [StringLength(200)]
+            [DisplayName("Đường dẫn ảnh")]
+            public string DuongDanAnh { get; set; }
+
+            [StringLength(200)]
+            [DisplayName("Đường dẫn trực tuyến")]
+            public string DuongDanTrucTuyen { get; set; }
+        }
         #endregion
 
         #region MY FUNCTION
-        
+
         /// <summary>
         /// Các giá trị ban đầu cho các biến toàn cục
         /// </summary>
@@ -129,10 +161,24 @@ namespace ASPMVC_WebNgheNhac.Controllers
         {
             return View(db.Database.SqlQuery<Models.THELOAI>("SELECT TOP 6 * FROM THELOAI"));
         }
+
         [HttpGet]
-        public ActionResult Music()
+        public ActionResult Music(int id = 9, int sotrang = 1) // id = số bản nhạc hiển thị trên trang web, sotrang = số thứ tự trang đang hiển thị
         {
-            return View(db.Database.SqlQuery<Models.BANNHAC>("SELECT TOP 30 * FROM BANNHAC"));
+            lmusicAll = db.Database.SqlQuery<int>("SELECT MaBanNhac FROM BANNHAC").ToList();
+            ViewBag.NumberShow = id > 9 ? id : 9;
+            ViewBag.NumberPages = lmusicAll.Count % id > 0 ? lmusicAll.Count/id + 1 : lmusicAll.Count / id;
+            if (sotrang <= 1)
+            {
+                return View(db.Database.SqlQuery<MySimpleStructBanNhac>("SELECT TOP " + id + " bn.MaBanNhac, bn.TenBanNhac, bn.DuongDanBanNhac, bn.DuongDanAnh, bn.DuongDanTrucTuyen ,tg.HoTen FROM TACGIA tg, BANNHAC bn WHERE tg.MaTacGia = bn.MaTacGia").Cast<MySimpleStructBanNhac>().ToList());
+            }
+            List<MySimpleStructBanNhac> lshow = new List<MySimpleStructBanNhac>();
+            int ___i = id * (sotrang - 1);
+            for (int i = 0; i < id && ___i < lmusicAll.Count; i++)
+            {
+                lshow.Add(db.Database.SqlQuery<MySimpleStructBanNhac>("SELECT TOP 1 bn.MaBanNhac, bn.TenBanNhac, bn.DuongDanBanNhac, bn.DuongDanAnh, bn.DuongDanTrucTuyen ,tg.HoTen FROM TACGIA tg, BANNHAC bn WHERE tg.MaTacGia = bn.MaTacGia AND bn.MaBanNhac = " + lmusicAll[___i++]).SingleOrDefault());
+            }
+            return View(lshow);
         }
         [HttpGet]
         public ActionResult Single()

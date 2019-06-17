@@ -3,9 +3,6 @@
 @{
     Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
 }
-@{ 
-    ASPMVC_WebNgheNhac.Models.DbMusicWebsite db = new ASPMVC_WebNgheNhac.Models.DbMusicWebsite();
-}
 <div class="table-responsive">
     @Html.ActionLink("Thêm mới", "Edit", new { id = "BANNHAC" })
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -15,7 +12,7 @@
                     @Html.DisplayNameFor(model => model.TenBanNhac)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TACGIA.HoTen)
+                    @Html.DisplayNameFor(model => model.MaTacGia)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DoDai)
@@ -46,7 +43,7 @@
                     @Html.DisplayNameFor(model => model.TenBanNhac)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TACGIA.HoTen)
+                    @Html.DisplayNameFor(model => model.MaTacGia)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DoDai)
@@ -73,13 +70,12 @@
         </tfoot>
         @foreach (var item in Model)
         {
-            string hotentacgia = db.TACGIAs.Find(item.MaTacGia).HoTen;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenBanNhac)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => hotentacgia)
+                    @Html.DisplayFor(modelItem => item.MaTacGia)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DoDai)

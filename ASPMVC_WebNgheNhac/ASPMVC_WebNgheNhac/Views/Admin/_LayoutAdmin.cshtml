@@ -145,7 +145,7 @@
 
                     @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <label for="file">Upload Image:</label>
+                        <label class="dropdown-item" for="file">Upload Image:</label>
                         <a class="dropdown-item"><input type="file" name="file" id="file" style="width: 100%;" /></a>
                         <a class="dropdown-item"><input type="submit" value="Tải lên" class="submit" /></a>
                     }

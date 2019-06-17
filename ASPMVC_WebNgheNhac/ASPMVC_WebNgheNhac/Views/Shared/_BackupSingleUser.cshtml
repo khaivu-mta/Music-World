@@ -47,127 +47,122 @@
     @*<script src="/Assets/js/single.js"></script>*@
 
     <script>
-$(document).ready(function () {
-    "use strict";
-
-    /*
+        /*
     1. Vars and Inits
     */
 
-    var header = $('.header');
-    var ctrl = new ScrollMagic.Controller();
+        var header = $('.header');
+        var ctrl = new ScrollMagic.Controller();
 
-    initMenu();
-    initFitVids();
-    initSinglePlayer();
+        initMenu();
+        initFitVids();
+        initSinglePlayer();
 
-    setHeader();
-
-    $(window).on('resize', function () {
         setHeader();
-    });
 
-    $(document).on('scroll', function () {
-        setHeader();
-    });
+        $(window).on('resize', function () {
+            setHeader();
+        });
 
-    /*
-    2. Set Header
-    */
+        $(document).on('scroll', function () {
+            setHeader();
+        });
 
-    function setHeader() {
-        if ($(window).scrollTop() > 91) {
-            header.addClass('scrolled');
-        }
-        else {
-            header.removeClass('scrolled');
-        }
-    }
+        /*
+        2. Set Header
+        */
 
-    /*
-    3. Init Menu
-    */
-
-    function initMenu() {
-        if ($('.menu').length) {
-            var hamb = $('.hamburger');
-            var menu = $('.menu');
-            var menuOverlay = $('.menu_overlay');
-
-            hamb.on('click', function () {
-                menu.addClass('active');
-            });
-
-            menuOverlay.on('click', function () {
-                menu.removeClass('active');
-            });
-        }
-    }
-
-    /*
-    4. Init Single Player
-    */
-    function initSinglePlayer() {
-        for (var i = 0; i < @icount; i++) {
-            @{
-                strsum = "#" + strplayer + (iva+1).ToString();
-                strsum2 = "#" + strcontainer + (iva + 1).ToString();
+        function setHeader() {
+            if ($(window).scrollTop() > 91) {
+                header.addClass('scrolled');
             }
+            else {
+                header.removeClass('scrolled');
+            }
+        }
 
-            if ($(@strsum).length) {
-                $(@strsum).jPlayer({
-                    ready: function () {
-                        $(this).jPlayer("setMedia", {
-                            title: @Model[@iva].TenBanNhac,
-                            artist: "Khải Vũ",
-                            mp3: @Model[@iva].DuongDanBanNhac,
-                        });
-                    },
-                    play: function () { // To avoid multiple jPlayers playing together.
-                        $(this).jPlayer("pauseOthers");
-                    },
-                    swfPath: "/Assets/plugins/jPlayer",
-                    supplied: @Model[@iva].DinhDang,
-                    cssSelectorAncestor: @strsum2,
-                    wmode: "window",
-                    globalVolume: true,
-                    useStateClassSkin: true,
-                    autoBlur: false,
-                    smoothPlayBar: true,
-                    keyEnabled: true,
-                    solution: 'html',
-                    preload: 'metadata',
-                    volume: 0.3,
-                    muted: false,
-                    backgroundColor: '#000000',
-                    errorAlerts: false,
-                    warningAlerts: false
+        /*
+        3. Init Menu
+        */
+
+        function initMenu() {
+            if ($('.menu').length) {
+                var hamb = $('.hamburger');
+                var menu = $('.menu');
+                var menuOverlay = $('.menu_overlay');
+
+                hamb.on('click', function () {
+                    menu.addClass('active');
+                });
+
+                menuOverlay.on('click', function () {
+                    menu.removeClass('active');
                 });
             }
-            @{
-                iva++;
+        }
+
+        /*
+        4. Init Single Player
+        */
+        function initSinglePlayer() {
+            for (var i = 0; i < @icount; i++) {
+                @{
+                    strsum = "#" + strplayer + (iva+1).ToString();
+                    strsum2 = "#" + strcontainer + (iva + 1).ToString();
+                }
+
+                if ($(@strsum).length) {
+                    $(@strsum).jPlayer({
+                        ready: function () {
+                            $(this).jPlayer("setMedia", {
+                                title: @Model[@iva].TenBanNhac,
+                                artist: "Khải Vũ",
+                                mp3: @Model[@iva].DuongDanBanNhac,
+                            });
+                        },
+                        play: function () { // To avoid multiple jPlayers playing together.
+                            $(this).jPlayer("pauseOthers");
+                        },
+                        swfPath: "/Assets/plugins/jPlayer",
+                        supplied: @Model[@iva].DinhDang,
+                        cssSelectorAncestor: @strsum2,
+                        wmode: "window",
+                        globalVolume: true,
+                        useStateClassSkin: true,
+                        autoBlur: false,
+                        smoothPlayBar: true,
+                        keyEnabled: true,
+                        solution: 'html',
+                        preload: 'metadata',
+                        volume: 0.3,
+                        muted: false,
+                        backgroundColor: '#000000',
+                        errorAlerts: false,
+                        warningAlerts: false
+                    });
+                }
+                @{
+                    iva++;
+                }
             }
         }
-    }
 
-    /*
-    5. Init Fitvids
-    */
+        /*
+        5. Init Fitvids
+        */
 
-    function initFitVids() {
-        if ($('.video_container').length) {
-            $('.video_container').fitVids();
+        function initFitVids() {
+            if ($('.video_container').length) {
+                $('.video_container').fitVids();
+            }
         }
-    }
-
-});
     </script>
 }
 
 @section NowActive{
     <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
     <li><a href="@Url.Action("About", "User")">Thể loại nhạc</a></li>
-    <li><a href="@Url.Action("Music", "User")">Nghe nhạc</a></li>
+    <li><a href="@Url.Action("Music", "User")">Bản nhạc</a></li>
     <li><a href="@Url.Action("Contact", "User")">Liên lạc</a></li>
     <li class="active"><a href="@Url.Action("Single", "User")">Nghệ sĩ</a></li>
 }

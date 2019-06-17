@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASPMVC_WebNgheNhac.Models.BANNHAC>
+﻿@model List<ASPMVC_WebNgheNhac.Controllers.UserController.MySimpleStructBanNhac>
 
 @{
     ViewBag.Title = "Music";
@@ -42,7 +42,7 @@
 @section NowActive{
 <li><a href="@Url.Action("Index", "User")">Trang chủ</a></li>
 <li><a href="@Url.Action("About", "User")">Thể loại nhạc</a></li>
-<li class="active"><a href="@Url.Action("Music", "User")">Nghe nhạc</a></li>
+<li class="active"><a href="@Url.Action("Music", "User")">Bản nhạc</a></li>
 <li><a href="@Url.Action("Contact", "User")">Liên lạc</a></li>
 <li><a href="@Url.Action("Single", "User")">Nghệ sĩ</a></li>
 }
@@ -62,12 +62,22 @@
             </div>
         </div>
     </div>
+    <!-- Audio -->
+    <p align="right" width="100">
+        <audio id="myAudioControls" controls="controls">
+            <source id="audioSource" src="@Model[0].DuongDanBanNhac" type="audio/mp3" />
+            <source id="audioSource" src="@Model[0].DuongDanBanNhac" type="audio/ogg" />
+            Trình duyệt của bạn không được hỗ trợ phát nhạc trực tuyến, xin hãy chắc chắn trình duyệt đã được cập nhật lên bản mới nhất.
+        </audio>
+    </p>
 </div>
+
+
 
 <!-- List music -->
 
 <div class="discs">
-    <center><h2>Các ca khúc cập nhật liên tục</h2></br></center>
+    <center><h2>Các ca khúc cập nhật liên tục</h2></center>
     <div class="container">
         <div class="row discs_row">
 
@@ -76,19 +86,18 @@
                 string idstr = "disc_content_";
                 int idem = 3;
             }
-            @foreach (var item in Model)
+            @for (int i = 0; i < ViewBag.NumberShow && i < Model.Count; i++)
             {
                 string tamm = idstr + idem;
-                string tentacgia = new ASPMVC_WebNgheNhac.Models.DbMusicWebsite().TACGIAs.Find(item.MaTacGia).HoTen;
                 <div class="col-xl-4 col-md-6">
                     <div class="disc">
-                        <a href="#">
-                            <div class="disc_image"><img src="@item.DuongDanAnh" alt="#"></div>
+                        <a href="#" onclick="JS_PlayAudio('@Model[i].DuongDanBanNhac')">
+                            <div class="disc_image"><img src="@Model[i].DuongDanAnh" alt="#"></div>
                             <div class="disc_container">
                                 <div>
                                     <div class="@tamm">
-                                        <div class="disc_title">@tentacgia</div>
-                                        <div class="disc_subtitle">@item.TenBanNhac</div>
+                                        <div class="disc_title">@Model[i].HoTen</div>
+                                        <div class="disc_subtitle">@Model[i].TenBanNhac</div>
                                     </div>
                                 </div>
                             </div>
@@ -99,3 +108,27 @@
         </div>
     </div>
 </div>
+
+<br />
+
+<!-- Trang đang hiển thị -->
+<center>
+    <div>
+        @{
+            for (int i = 0; i < ViewBag.NumberPages; i++)
+            {
+                <a href="@Url.Action("Music", "User", new { id = ViewBag.NumberShow, sotrang = (i + 1) })"> @(i+1) </a>
+            }
+        }
+    </div>
+</center>
+
+<!-- JS for fun -->
+<script>
+    function JS_PlayAudio(path) {
+        document.getElementById("myAudioControls").pause();
+        document.getElementById("myAudioControls").setAttribute('src', path);
+        document.getElementById("myAudioControls").load();
+        document.getElementById("myAudioControls").play();
+    }
+</script>
