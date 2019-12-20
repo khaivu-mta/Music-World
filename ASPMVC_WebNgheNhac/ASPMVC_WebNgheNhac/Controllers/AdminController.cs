@@ -11,6 +11,13 @@ namespace ASPMVC_WebNgheNhac.Controllers
 {
     public class AdminController : Controller
     {
+        public ActionResult test()
+        {
+            var db = new DbMusicWebsite();
+            db.Configuration.LazyLoadingEnabled = false;
+            return View(db.Database.SqlQuery<BANNHAC>("SELECT * FROM BANNHAC").ToList());
+        }
+
         // GET: Admin
         public int? CheckLogin(string _email, string _password)
         {

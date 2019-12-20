@@ -1,0 +1,72 @@
+﻿@using System.Reflection
+@model IEnumerable<object>
+@{
+    ViewBag.Title = "_MultiView";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+@{
+    var firstOb = Model.FirstOrDefault();
+    PropertyInfo[] data = firstOb.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+}
+<div class="table-responsive">
+    @Html.ActionLink("Thêm mới", "Edit", new { id = "" })
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    Hành động
+                </th>
+                @foreach (var item in data)
+                {
+                    <th>
+                        @item.Name
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    Hành động
+                </th>
+                @foreach (var item in data)
+                {
+                    <th>
+                        @item.Name
+                    </th>
+                }
+            </tr>
+        </tfoot>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = "" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = "" })
+                </td>
+
+                @foreach (PropertyInfo item2 in item.GetType().GetProperties())
+                {
+                    if (item2.CanRead)
+                    {
+                        try
+                        {
+                            <td>
+                                @item2.GetValue(item)
+                            </td>
+                            continue;
+                        }
+                        catch (Exception e)
+                        {
+                            <td>
+                                _
+                            </td>
+                        };
+                    }
+                }
+
+            </tr>
+        }
+    </table>
+</div>
+@RenderBody()
