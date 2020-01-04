@@ -1,0 +1,622 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbMusicWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BANNHAC">
+          <Key>
+            <PropertyRef Name="MaBanNhac" />
+          </Key>
+          <Property Name="MaBanNhac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBanNhac" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaTacGia" Type="int" />
+          <Property Name="KichThuoc" Type="int" />
+          <Property Name="DoDai" Type="int" />
+          <Property Name="TanSo" Type="int" />
+          <Property Name="DinhDang" Type="nvarchar" MaxLength="100" />
+          <Property Name="NamSanXuat" Type="int" />
+          <Property Name="DuongDanBanNhac" Type="nvarchar" MaxLength="200" />
+          <Property Name="DuongDanAnh" Type="nvarchar" MaxLength="200" />
+          <Property Name="DuongDanTrucTuyen" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DANHSACHNHAC">
+          <Key>
+            <PropertyRef Name="MaDanhSach" />
+          </Key>
+          <Property Name="MaDanhSach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDanhSach" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaTacGia" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="LuongTruyCap" Type="int" />
+          <Property Name="DuongDanTrucTuyen" Type="nvarchar" MaxLength="200" />
+          <Property Name="DuongDanAnh" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DANHSACHNHAC_BANNHAC">
+          <Key>
+            <PropertyRef Name="MaBanNhac" />
+            <PropertyRef Name="MaDanhSach" />
+          </Key>
+          <Property Name="MaBanNhac" Type="int" Nullable="false" />
+          <Property Name="MaDanhSach" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+          <Property Name="DuongDanAnh" Type="nvarchar" MaxLength="200" />
+          <Property Name="MaQuyenTruyCap" Type="int" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG_DANHSACHNHAC">
+          <Key>
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="MaDanhSach" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaDanhSach" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QUYENTRUYCAP">
+          <Key>
+            <PropertyRef Name="MaQuyenTruyCap" />
+          </Key>
+          <Property Name="MaQuyenTruyCap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenQuyenTruyCap" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TACGIA">
+          <Key>
+            <PropertyRef Name="MaTacGia" />
+          </Key>
+          <Property Name="MaTacGia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="NgayBatDau" Type="datetime" />
+          <Property Name="SoLuongBaiHat" Type="int" />
+          <Property Name="GioiThieu" Type="nvarchar" MaxLength="2000" />
+          <Property Name="DuongDanAnh" Type="nvarchar" MaxLength="200" />
+          <Property Name="LienKet" Type="nvarchar" MaxLength="200" />
+          <Property Name="HienThiTrenTrangChu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TACGIA_BANNHAC">
+          <Key>
+            <PropertyRef Name="MaBanNhac" />
+            <PropertyRef Name="MaTacGia" />
+          </Key>
+          <Property Name="MaBanNhac" Type="int" Nullable="false" />
+          <Property Name="MaTacGia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="MaTheLoai" />
+          </Key>
+          <Property Name="MaTheLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTheLoai" Type="nvarchar" MaxLength="100" />
+          <Property Name="DuongDanAnh" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="THELOAI_BANNHAC">
+          <Key>
+            <PropertyRef Name="MaBanNhac" />
+            <PropertyRef Name="MaTheLoai" />
+          </Key>
+          <Property Name="MaBanNhac" Type="int" Nullable="false" />
+          <Property Name="MaTheLoai" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="BANNHAC">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DANHSACHNHAC_BANNHAC_dbo_BANNHAC_MaBanNhac">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DANHSACHNHAC_BANNHAC" Type="Self.DANHSACHNHAC_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Principal>
+            <Dependent Role="DANHSACHNHAC_BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DANHSACHNHAC_BANNHAC_dbo_DANHSACHNHAC_MaDanhSach">
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DANHSACHNHAC_BANNHAC" Type="Self.DANHSACHNHAC_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DANHSACHNHAC">
+              <PropertyRef Name="MaDanhSach" />
+            </Principal>
+            <Dependent Role="DANHSACHNHAC_BANNHAC">
+              <PropertyRef Name="MaDanhSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="DANHSACHNHAC">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_DANHSACHNHAC_MaDanhSach">
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGUOIDUNG_DANHSACHNHAC" Type="Self.NGUOIDUNG_DANHSACHNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DANHSACHNHAC">
+              <PropertyRef Name="MaDanhSach" />
+            </Principal>
+            <Dependent Role="NGUOIDUNG_DANHSACHNHAC">
+              <PropertyRef Name="MaDanhSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_NGUOIDUNG_Email">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGUOIDUNG_DANHSACHNHAC" Type="Self.NGUOIDUNG_DANHSACHNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="NGUOIDUNG_DANHSACHNHAC">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap">
+          <End Role="QUYENTRUYCAP" Type="Self.QUYENTRUYCAP" Multiplicity="0..1" />
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYENTRUYCAP">
+              <PropertyRef Name="MaQuyenTruyCap" />
+            </Principal>
+            <Dependent Role="NGUOIDUNG">
+              <PropertyRef Name="MaQuyenTruyCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TACGIA_BANNHAC_dbo_BANNHAC_MaBanNhac">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TACGIA_BANNHAC" Type="Self.TACGIA_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Principal>
+            <Dependent Role="TACGIA_BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TACGIA_BANNHAC_dbo_TACGIA_MaTacGia">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TACGIA_BANNHAC" Type="Self.TACGIA_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="TACGIA_BANNHAC">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_THELOAI_BANNHAC_dbo_BANNHAC_MaBanNhac">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="THELOAI_BANNHAC" Type="Self.THELOAI_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Principal>
+            <Dependent Role="THELOAI_BANNHAC">
+              <PropertyRef Name="MaBanNhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_THELOAI_BANNHAC_dbo_THELOAI_MaTheLoai">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="THELOAI_BANNHAC" Type="Self.THELOAI_BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="MaTheLoai" />
+            </Principal>
+            <Dependent Role="THELOAI_BANNHAC">
+              <PropertyRef Name="MaTheLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PROC_CreateDefaultRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DbMusicWebsiteModelStoreContainer">
+          <EntitySet Name="BANNHAC" EntityType="Self.BANNHAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANHSACHNHAC" EntityType="Self.DANHSACHNHAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANHSACHNHAC_BANNHAC" EntityType="Self.DANHSACHNHAC_BANNHAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDUNG_DANHSACHNHAC" EntityType="Self.NGUOIDUNG_DANHSACHNHAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYENTRUYCAP" EntityType="Self.QUYENTRUYCAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TACGIA" EntityType="Self.TACGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TACGIA_BANNHAC" EntityType="Self.TACGIA_BANNHAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THELOAI" EntityType="Self.THELOAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THELOAI_BANNHAC" EntityType="Self.THELOAI_BANNHAC" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia" Association="Self.FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia">
+            <End Role="TACGIA" EntitySet="TACGIA" />
+            <End Role="BANNHAC" EntitySet="BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DANHSACHNHAC_BANNHAC_dbo_BANNHAC_MaBanNhac" Association="Self.FK_dbo_DANHSACHNHAC_BANNHAC_dbo_BANNHAC_MaBanNhac">
+            <End Role="BANNHAC" EntitySet="BANNHAC" />
+            <End Role="DANHSACHNHAC_BANNHAC" EntitySet="DANHSACHNHAC_BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DANHSACHNHAC_BANNHAC_dbo_DANHSACHNHAC_MaDanhSach" Association="Self.FK_dbo_DANHSACHNHAC_BANNHAC_dbo_DANHSACHNHAC_MaDanhSach">
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHAC" />
+            <End Role="DANHSACHNHAC_BANNHAC" EntitySet="DANHSACHNHAC_BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia" Association="Self.FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia">
+            <End Role="TACGIA" EntitySet="TACGIA" />
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_DANHSACHNHAC_MaDanhSach" Association="Self.FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_DANHSACHNHAC_MaDanhSach">
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHAC" />
+            <End Role="NGUOIDUNG_DANHSACHNHAC" EntitySet="NGUOIDUNG_DANHSACHNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_NGUOIDUNG_Email" Association="Self.FK_dbo_NGUOIDUNG_DANHSACHNHAC_dbo_NGUOIDUNG_Email">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="NGUOIDUNG_DANHSACHNHAC" EntitySet="NGUOIDUNG_DANHSACHNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap" Association="Self.FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap">
+            <End Role="QUYENTRUYCAP" EntitySet="QUYENTRUYCAP" />
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TACGIA_BANNHAC_dbo_BANNHAC_MaBanNhac" Association="Self.FK_dbo_TACGIA_BANNHAC_dbo_BANNHAC_MaBanNhac">
+            <End Role="BANNHAC" EntitySet="BANNHAC" />
+            <End Role="TACGIA_BANNHAC" EntitySet="TACGIA_BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TACGIA_BANNHAC_dbo_TACGIA_MaTacGia" Association="Self.FK_dbo_TACGIA_BANNHAC_dbo_TACGIA_MaTacGia">
+            <End Role="TACGIA" EntitySet="TACGIA" />
+            <End Role="TACGIA_BANNHAC" EntitySet="TACGIA_BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_THELOAI_BANNHAC_dbo_BANNHAC_MaBanNhac" Association="Self.FK_dbo_THELOAI_BANNHAC_dbo_BANNHAC_MaBanNhac">
+            <End Role="BANNHAC" EntitySet="BANNHAC" />
+            <End Role="THELOAI_BANNHAC" EntitySet="THELOAI_BANNHAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_THELOAI_BANNHAC_dbo_THELOAI_MaTheLoai" Association="Self.FK_dbo_THELOAI_BANNHAC_dbo_THELOAI_MaTheLoai">
+            <End Role="THELOAI" EntitySet="THELOAI" />
+            <End Role="THELOAI_BANNHAC" EntitySet="THELOAI_BANNHAC" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbMusicWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BANNHAC">
+          <Key>
+            <PropertyRef Name="MaBanNhac" />
+          </Key>
+          <Property Name="MaBanNhac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBanNhac" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaTacGia" Type="Int32" />
+          <Property Name="KichThuoc" Type="Int32" />
+          <Property Name="DoDai" Type="Int32" />
+          <Property Name="TanSo" Type="Int32" />
+          <Property Name="DinhDang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NamSanXuat" Type="Int32" />
+          <Property Name="DuongDanBanNhac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanTrucTuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TACGIA" Relationship="Self.FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia" FromRole="BANNHAC" ToRole="TACGIA" />
+          <NavigationProperty Name="DANHSACHNHACs" Relationship="Self.DANHSACHNHAC_BANNHAC" FromRole="BANNHAC" ToRole="DANHSACHNHAC" />
+          <NavigationProperty Name="TACGIAs" Relationship="Self.TACGIA_BANNHAC" FromRole="BANNHAC" ToRole="TACGIA" />
+          <NavigationProperty Name="THELOAIs" Relationship="Self.THELOAI_BANNHAC" FromRole="BANNHAC" ToRole="THELOAI" />
+        </EntityType>
+        <EntityType Name="DANHSACHNHAC">
+          <Key>
+            <PropertyRef Name="MaDanhSach" />
+          </Key>
+          <Property Name="MaDanhSach" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhSach" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaTacGia" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="LuongTruyCap" Type="Int32" />
+          <Property Name="DuongDanTrucTuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TACGIA" Relationship="Self.FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia" FromRole="DANHSACHNHAC" ToRole="TACGIA" />
+          <NavigationProperty Name="BANNHACs" Relationship="Self.DANHSACHNHAC_BANNHAC" FromRole="DANHSACHNHAC" ToRole="BANNHAC" />
+          <NavigationProperty Name="NGUOIDUNGs" Relationship="Self.NGUOIDUNG_DANHSACHNHAC" FromRole="DANHSACHNHAC" ToRole="NGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MaQuyenTruyCap" Type="Int32" />
+          <NavigationProperty Name="QUYENTRUYCAP" Relationship="Self.FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap" FromRole="NGUOIDUNG" ToRole="QUYENTRUYCAP" />
+          <NavigationProperty Name="DANHSACHNHACs" Relationship="Self.NGUOIDUNG_DANHSACHNHAC" FromRole="NGUOIDUNG" ToRole="DANHSACHNHAC" />
+        </EntityType>
+        <EntityType Name="QUYENTRUYCAP">
+          <Key>
+            <PropertyRef Name="MaQuyenTruyCap" />
+          </Key>
+          <Property Name="MaQuyenTruyCap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenQuyenTruyCap" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NGUOIDUNGs" Relationship="Self.FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap" FromRole="QUYENTRUYCAP" ToRole="NGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="TACGIA">
+          <Key>
+            <PropertyRef Name="MaTacGia" />
+          </Key>
+          <Property Name="MaTacGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <Property Name="NgayBatDau" Type="DateTime" Precision="3" />
+          <Property Name="SoLuongBaiHat" Type="Int32" />
+          <Property Name="GioiThieu" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LienKet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HienThiTrenTrangChu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BANNHACs" Relationship="Self.FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia" FromRole="TACGIA" ToRole="BANNHAC" />
+          <NavigationProperty Name="DANHSACHNHACs" Relationship="Self.FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia" FromRole="TACGIA" ToRole="DANHSACHNHAC" />
+          <NavigationProperty Name="BANNHACs1" Relationship="Self.TACGIA_BANNHAC" FromRole="TACGIA" ToRole="BANNHAC" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="MaTheLoai" />
+          </Key>
+          <Property Name="MaTheLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTheLoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BANNHACs" Relationship="Self.THELOAI_BANNHAC" FromRole="THELOAI" ToRole="BANNHAC" />
+        </EntityType>
+        <Association Name="FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="BANNHAC">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="DANHSACHNHAC">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap">
+          <End Role="QUYENTRUYCAP" Type="Self.QUYENTRUYCAP" Multiplicity="0..1" />
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYENTRUYCAP">
+              <PropertyRef Name="MaQuyenTruyCap" />
+            </Principal>
+            <Dependent Role="NGUOIDUNG">
+              <PropertyRef Name="MaQuyenTruyCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DANHSACHNHAC_BANNHAC">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="*" />
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="*" />
+        </Association>
+        <Association Name="NGUOIDUNG_DANHSACHNHAC">
+          <End Role="DANHSACHNHAC" Type="Self.DANHSACHNHAC" Multiplicity="*" />
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="*" />
+        </Association>
+        <Association Name="TACGIA_BANNHAC">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="*" />
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="*" />
+        </Association>
+        <Association Name="THELOAI_BANNHAC">
+          <End Role="BANNHAC" Type="Self.BANNHAC" Multiplicity="*" />
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DbMusicWebsiteEntities_Test" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BANNHACs" EntityType="Self.BANNHAC" />
+          <EntitySet Name="DANHSACHNHACs" EntityType="Self.DANHSACHNHAC" />
+          <EntitySet Name="NGUOIDUNGs" EntityType="Self.NGUOIDUNG" />
+          <EntitySet Name="QUYENTRUYCAPs" EntityType="Self.QUYENTRUYCAP" />
+          <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
+          <EntitySet Name="THELOAIs" EntityType="Self.THELOAI" />
+          <AssociationSet Name="FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia" Association="Self.FK_dbo_BANNHAC_dbo_TACGIA_MaTacGia">
+            <End Role="TACGIA" EntitySet="TACGIAs" />
+            <End Role="BANNHAC" EntitySet="BANNHACs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia" Association="Self.FK_dbo_DANHSACHNHAC_dbo_TACGIA_MaTacGia">
+            <End Role="TACGIA" EntitySet="TACGIAs" />
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHACs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap" Association="Self.FK_dbo_NGUOIDUNG_dbo_QUYENTRUYCAP_MaQuyenTruyCap">
+            <End Role="QUYENTRUYCAP" EntitySet="QUYENTRUYCAPs" />
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+          </AssociationSet>
+          <AssociationSet Name="DANHSACHNHAC_BANNHAC" Association="Self.DANHSACHNHAC_BANNHAC">
+            <End Role="BANNHAC" EntitySet="BANNHACs" />
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHACs" />
+          </AssociationSet>
+          <AssociationSet Name="NGUOIDUNG_DANHSACHNHAC" Association="Self.NGUOIDUNG_DANHSACHNHAC">
+            <End Role="DANHSACHNHAC" EntitySet="DANHSACHNHACs" />
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+          </AssociationSet>
+          <AssociationSet Name="TACGIA_BANNHAC" Association="Self.TACGIA_BANNHAC">
+            <End Role="BANNHAC" EntitySet="BANNHACs" />
+            <End Role="TACGIA" EntitySet="TACGIAs" />
+          </AssociationSet>
+          <AssociationSet Name="THELOAI_BANNHAC" Association="Self.THELOAI_BANNHAC">
+            <End Role="BANNHAC" EntitySet="BANNHACs" />
+            <End Role="THELOAI" EntitySet="THELOAIs" />
+          </AssociationSet>
+          <FunctionImport Name="PROC_CreateDefaultRecord" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbMusicWebsiteModelStoreContainer" CdmEntityContainer="DbMusicWebsiteEntities_Test">
+          <EntitySetMapping Name="BANNHACs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.BANNHAC">
+              <MappingFragment StoreEntitySet="BANNHAC">
+                <ScalarProperty Name="MaBanNhac" ColumnName="MaBanNhac" />
+                <ScalarProperty Name="TenBanNhac" ColumnName="TenBanNhac" />
+                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+                <ScalarProperty Name="KichThuoc" ColumnName="KichThuoc" />
+                <ScalarProperty Name="DoDai" ColumnName="DoDai" />
+                <ScalarProperty Name="TanSo" ColumnName="TanSo" />
+                <ScalarProperty Name="DinhDang" ColumnName="DinhDang" />
+                <ScalarProperty Name="NamSanXuat" ColumnName="NamSanXuat" />
+                <ScalarProperty Name="DuongDanBanNhac" ColumnName="DuongDanBanNhac" />
+                <ScalarProperty Name="DuongDanAnh" ColumnName="DuongDanAnh" />
+                <ScalarProperty Name="DuongDanTrucTuyen" ColumnName="DuongDanTrucTuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DANHSACHNHACs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.DANHSACHNHAC">
+              <MappingFragment StoreEntitySet="DANHSACHNHAC">
+                <ScalarProperty Name="MaDanhSach" ColumnName="MaDanhSach" />
+                <ScalarProperty Name="TenDanhSach" ColumnName="TenDanhSach" />
+                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="LuongTruyCap" ColumnName="LuongTruyCap" />
+                <ScalarProperty Name="DuongDanTrucTuyen" ColumnName="DuongDanTrucTuyen" />
+                <ScalarProperty Name="DuongDanAnh" ColumnName="DuongDanAnh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOIDUNGs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.NGUOIDUNG">
+              <MappingFragment StoreEntitySet="NGUOIDUNG">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="DuongDanAnh" ColumnName="DuongDanAnh" />
+                <ScalarProperty Name="MaQuyenTruyCap" ColumnName="MaQuyenTruyCap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENTRUYCAPs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.QUYENTRUYCAP">
+              <MappingFragment StoreEntitySet="QUYENTRUYCAP">
+                <ScalarProperty Name="MaQuyenTruyCap" ColumnName="MaQuyenTruyCap" />
+                <ScalarProperty Name="TenQuyenTruyCap" ColumnName="TenQuyenTruyCap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TACGIAs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.TACGIA">
+              <MappingFragment StoreEntitySet="TACGIA">
+                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="SoLuongBaiHat" ColumnName="SoLuongBaiHat" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="DuongDanAnh" ColumnName="DuongDanAnh" />
+                <ScalarProperty Name="LienKet" ColumnName="LienKet" />
+                <ScalarProperty Name="HienThiTrenTrangChu" ColumnName="HienThiTrenTrangChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THELOAIs">
+            <EntityTypeMapping TypeName="DbMusicWebsiteModel.THELOAI">
+              <MappingFragment StoreEntitySet="THELOAI">
+                <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+                <ScalarProperty Name="TenTheLoai" ColumnName="TenTheLoai" />
+                <ScalarProperty Name="DuongDanAnh" ColumnName="DuongDanAnh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DANHSACHNHAC_BANNHAC" TypeName="DbMusicWebsiteModel.DANHSACHNHAC_BANNHAC" StoreEntitySet="DANHSACHNHAC_BANNHAC">
+            <EndProperty Name="BANNHAC">
+              <ScalarProperty Name="MaBanNhac" ColumnName="MaBanNhac" />
+            </EndProperty>
+            <EndProperty Name="DANHSACHNHAC">
+              <ScalarProperty Name="MaDanhSach" ColumnName="MaDanhSach" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="NGUOIDUNG_DANHSACHNHAC" TypeName="DbMusicWebsiteModel.NGUOIDUNG_DANHSACHNHAC" StoreEntitySet="NGUOIDUNG_DANHSACHNHAC">
+            <EndProperty Name="DANHSACHNHAC">
+              <ScalarProperty Name="MaDanhSach" ColumnName="MaDanhSach" />
+            </EndProperty>
+            <EndProperty Name="NGUOIDUNG">
+              <ScalarProperty Name="Email" ColumnName="Email" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TACGIA_BANNHAC" TypeName="DbMusicWebsiteModel.TACGIA_BANNHAC" StoreEntitySet="TACGIA_BANNHAC">
+            <EndProperty Name="BANNHAC">
+              <ScalarProperty Name="MaBanNhac" ColumnName="MaBanNhac" />
+            </EndProperty>
+            <EndProperty Name="TACGIA">
+              <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="THELOAI_BANNHAC" TypeName="DbMusicWebsiteModel.THELOAI_BANNHAC" StoreEntitySet="THELOAI_BANNHAC">
+            <EndProperty Name="BANNHAC">
+              <ScalarProperty Name="MaBanNhac" ColumnName="MaBanNhac" />
+            </EndProperty>
+            <EndProperty Name="THELOAI">
+              <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="PROC_CreateDefaultRecord" FunctionName="DbMusicWebsiteModel.Store.PROC_CreateDefaultRecord" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

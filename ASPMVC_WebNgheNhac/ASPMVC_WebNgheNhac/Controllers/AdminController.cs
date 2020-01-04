@@ -30,6 +30,7 @@ namespace ASPMVC_WebNgheNhac.Controllers
             return -1;
         }
         #endregion
+
         #region MY STRUCT - CLASS
         public class IndexStruct
         {
